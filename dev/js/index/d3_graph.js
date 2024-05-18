@@ -1,10 +1,9 @@
-// 색상 설정
+
 const RED = '#e73921';
 const BLUE = '#5e83ba';
 const WHITE = 'white';
-const SPECIAL_COLOR = '#ff0000';
+const LAST_COLOR = '#ff0000';
 
-// 데이터 설정
 const bigBars = [
   { year: 1940 }, { year: 1950 }, { year: 1960 }, { year: 1970 },
   { year: 1980 }, { year: 1990 }, { year: 2000 }, { year: 2010 },
@@ -27,7 +26,6 @@ const smallBars = [
   { year: 2022, name: '윤석열', color: RED }
 ];
 
-// Define eventBars with predefined events
 const eventBars = [
   { date: new Date(1905, 6, 9), title: "제 19대 대통령 당선" },
   { date: new Date(1942, 5, 13), title: "워싱턴 연설" },
@@ -1113,13 +1111,12 @@ const eventBars = [
   { date: new Date(2023, 10, 16), title: "장모 잔고증명 위조 징역 실형 확정" }
 ];
 
-// SVG 설정
-const svgWidth = 960;
-const svgHeight = 500;
+const svgWidth = 1680;
+const svgHeight = 300;
 const width = svgWidth;
 const height = svgHeight;
 
-const rectHeight = height * 0.8; // 영역 높이 설정 (80%)
+const rectHeight = height * 0.8;
 
 const svg = d3.select("svg")
   .attr("width", svgWidth)
@@ -1127,12 +1124,10 @@ const svg = d3.select("svg")
 
 const chartGroup = svg.append("g");
 
-// x 축 설정 (Date 객체 사용)
 const x = d3.scaleTime()
   .domain([new Date(1940, 0, 1), new Date(2027, 0, 1)])
   .range([0, width]);
 
-// 큰 막대기 추가
 chartGroup.selectAll(".big-line")
   .data(bigBars)
   .enter().append("line")
@@ -1142,7 +1137,6 @@ chartGroup.selectAll(".big-line")
   .attr("x2", d => x(new Date(d.year, 0, 1)))
   .attr("y2", 0);
 
-// 큰 막대기 텍스트 레이블 추가
 chartGroup.selectAll(".big-line-label")
   .data(bigBars)
   .enter().append("text")
@@ -1151,40 +1145,36 @@ chartGroup.selectAll(".big-line-label")
   .attr("y", height - 5)
   .text(d => d.year);
 
-// 사각형 영역 추가
 for (let i = 0; i < smallBars.length - 1; i++) {
   chartGroup.append("rect")
     .attr("class", "rect")
     .attr("x", x(new Date(smallBars[i].year, 0, 1)))
-    .attr("y", (height - rectHeight) / 2) // 중앙에 배치
+    .attr("y", (height - rectHeight) / 2)
     .attr("width", x(new Date(smallBars[i + 1].year, 0, 1)) - x(new Date(smallBars[i].year, 0, 1)))
     .attr("height", rectHeight)
     .attr("fill", smallBars[i].color)
     .attr("opacity", 0.5)
 }
 
-// 마지막 대통령부터 2024년까지의 사각형 영역 추가
 const lastPresidentYear = smallBars[smallBars.length - 1].year;
 chartGroup.append("rect")
   .attr("class", "rect")
   .attr("x", x(new Date(lastPresidentYear, 0, 1)))
-  .attr("y", (height - rectHeight) / 2) // 중앙에 배치
+  .attr("y", (height - rectHeight) / 2)
   .attr("width", x(new Date(2024, 0, 1)) - x(new Date(lastPresidentYear, 0, 1)))
   .attr("height", rectHeight)
   .attr("fill", smallBars[smallBars.length - 1].color)
   .attr("opacity", 0.5)
 
-// 2024년부터 2027년까지의 사각형 영역 추가
 chartGroup.append("rect")
   .attr("class", "rect")
   .attr("x", x(new Date(2024, 0, 1)))
-  .attr("y", (height - rectHeight) / 2) // 중앙에 배치
+  .attr("y", (height - rectHeight) / 2)
   .attr("width", x(new Date(2027, 0, 1)) - x(new Date(2024, 0, 1)))
   .attr("height", rectHeight)
-  .attr("fill", SPECIAL_COLOR)
+  .attr("fill", LAST_COLOR)
   .attr("opacity", 0.5)
 
-// 작은 막대기 추가
 const lines = chartGroup.selectAll(".line")
   .data(smallBars)
   .enter().append("line")
@@ -1192,9 +1182,8 @@ const lines = chartGroup.selectAll(".line")
   .attr("x1", d => x(new Date(d.year, 0, 1)))
   .attr("y1", height)
   .attr("x2", d => x(new Date(d.year, 0, 1)))
-  .attr("y2", height * 0.2); // 작은 막대기는 높이의 20%까지만
+  .attr("y2", height * 0.2);
 
-// 텍스트 레이블 추가 (작은 막대기)
 const labels = chartGroup.selectAll(".label")
   .data(smallBars)
   .enter().append("text")
@@ -1203,7 +1192,6 @@ const labels = chartGroup.selectAll(".label")
   .attr("y", height * 0.2 - 5)
   .text(d => `${d.year} ${d.name}`);
 
-// 원 추가 (작은 막대기)
 const circles = chartGroup.selectAll(".circle")
   .data(smallBars)
   .enter().append("circle")
@@ -1213,16 +1201,14 @@ const circles = chartGroup.selectAll(".circle")
   .attr("r", 5)
   .attr("fill", "black");
 
-// 줌 핸들러 설정
 const zoom = d3.zoom()
-  .scaleExtent([1, 10])  // 줌 범위 설정
+  .scaleExtent([1, 40])
   .translateExtent([[0, 0], [width, height]])
   .extent([[0, 0], [width, height]])
   .on("zoom", zoomed);
 
 svg.call(zoom);
 
-// 줌 함수
 function zoomed(event) {
   const newX = event.transform.rescaleX(x);
 
@@ -1264,17 +1250,15 @@ function zoomed(event) {
     });
   chartGroup.selectAll(".event")
     .attr("cx", d => newX(d.date));
-  // 줌된 x 스케일을 저장하여 나중에 사용
+
   zoomTransform = event.transform;
 }
 
-// 드래그 핸들러 설정
 const drag = d3.drag()
   .on("drag", dragged);
 
 svg.call(drag);
 
-// 드래그 함수
 function dragged(event) {
   const dx = event.dx;
 
@@ -1282,23 +1266,20 @@ function dragged(event) {
   svg.call(zoom.translateBy, dx / transform.k, 0);
 }
 
-// 줌된 x 스케일을 저장할 변수
 let zoomTransform = d3.zoomIdentity;
 
-// Add eventBars to the chart
 chartGroup.selectAll(".event")
   .data(eventBars)
   .enter().append("circle")
   .attr("class", "event")
   .attr("cx", d => x(d.date))
-  .attr("cy", height * 0.5) // Centered vertically
+  .attr("cy", height * 0.5)
   .attr("r", 8)
   .attr("fill", "green")
   .attr("opacity", 0.7)
   .on("mouseenter", showEventData)
   .on("mouseout", hideEventData);
 
-// Function to display event data when mouse enters the circle
 function showEventData(event, d) {
   const mouseX = d3.pointer(event)[0];
   const mouseY = d3.pointer(event)[1];
@@ -1315,7 +1296,6 @@ function showEventData(event, d) {
     .attr("font-size", "12px");
 }
 
-// Function to hide event data when mouse leaves the circle
 function hideEventData() {
   chartGroup.selectAll(".tooltip").remove();
 }
