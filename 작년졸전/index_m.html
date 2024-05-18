@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="content-type" content="text/html; charset=euc-kr" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+  </head>
+  <body>
+    <div style="height: 290px"></div>
+    <div class="menu-container">
+      <div class="menu-item active"><a href="index.html">HOME</a></div>
+      <div class="menu-item">ISSUE</div>
+      <div class="menu-item">GRAPH</div>
+    </div>
+    <div class="title-container">
+      <div class="eng sub-title">
+        <b>Poll Results</b><br />
+        of Past Presidents<br />
+        of South Korea
+      </div>
+      <div class="main-title">
+        <div class="desc">1948/07 - 2023/12</div>
+        <div class="title bold" style="margin-top: 11px; margin-left: -6px">
+          대한민국 역대 대통령
+        </div>
+        <div class="title" style="margin-top: 12px; margin-left: -5px">
+          여론조사 결과
+        </div>
+      </div>
+    </div>
+    <div class="main-graph-container"></div>
+
+    <div class="main-tooltip">
+      <div class="close">X</div>
+      <a href="president-detail.html" class="a-tag">
+        <div class="header">
+          <div class="p-name">이승만</div>
+          <div class="p-party">대한독립촉성국민회, 자유당</div>
+        </div>
+        <div class="body"></div>
+        <div class="footer">1948/07/24 - 1960/04/27 (총 12년)</div>
+      </a>
+    </div>
+  </body>
+  <script src="js/data.js"></script>
+
+  <script src="js/script_m.js"></script>
+</html>

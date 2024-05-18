@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      canvas {
+        border: 1px solid #000;
+      }
+    </style>
+    <title>Cell Division Animation</title>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const circles = [];
+
+      function Circle(x, y, radius, color, dx, dy) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.color = color;
+        this.dx = dx;
+        this.dy = dy;
+
+        this.draw = function () {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+          ctx.closePath();
+        };
+
+        this.update = function () {
+          this.x += this.dx;
+          this.y += this.dy;
+
+          if (this.radius > 0.2) {
+            this.radius -= 0.2;
+          }
+
+          this.draw();
+        };
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < circles.length; i++) {
+          circles[i].update();
+        }
+      }
+
+      function createCellDivision(x, y, dx, dy) {
+        const radius = 30;
+        const color =
+          "rgba(" +
+          Math.random() * 255 +
+          "," +
+          Math.random() * 255 +
+          "," +
+          Math.random() * 255 +
+          "," +
+          1 +
+          ")";
+
+        const cell1 = new Circle(x, y, radius, color, dx, dy);
+        const cell2 = new Circle(x, y, radius, color, -dx, -dy);
+
+        circles.push(cell1);
+        circles.push(cell2);
+      }
+
+      canvas.addEventListener("click", function (event) {
+        const mouseX = event.clientX - canvas.getBoundingClientRect().left;
+        const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+
+        createCellDivision(
+          mouseX,
+          mouseY,
+          (Math.random() - 0.5) * 2,
+          (Math.random() - 0.5) * 2
+        );
+      });
+
+      animate();
+    </script>
+  </body>
+</html>

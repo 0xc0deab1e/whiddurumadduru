@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta http-equiv="content-type" content="text/html; charset=euc-kr" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <!-- <script src="https://code.highcharts.com/stock/highstock.js"></script> -->
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
+    <script src="https://code.highcharts.com/stock/indicators/ema.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"
+    ></script>
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+  </head>
+  <body>
+    <div class="menu-container">
+      <div class="menu-item"><a href="index.html">HOME</a></div>
+      <div class="menu-item active toissue">ISSUE</div>
+      <div class="menu-item tograph">GRAPH</div>
+    </div>
+    <div class="title-container">
+      <div class="eng sub-title">
+        <b>Poll Results</b><br />
+        of Past Presidents<br />
+        of South Korea
+      </div>
+      <div class="main-title">
+        <div class="desc nf">1948/07 - 2023/06</div>
+        <div class="title bold" style="margin-top: 11px">
+          대한민국 역대 대통령
+        </div>
+        <div class="title subb" style="margin-top: 12px">여론조사 결과</div>
+      </div>
+    </div>
+    <div>
+      <div class="detail-container">
+        <div class="left-side">
+          <div class="img-container"></div>
+        </div>
+        <div class="right-side"></div>
+      </div>
+    </div>
+
+    <div class="slider" style="padding: 70px">
+      <div class="slider-img-container">
+        <div class="event-img"></div>
+        <div class="event-video"></div>
+      </div>
+      <div id="container" class="bar-graph-container"></div>
+      <div class="event-date">
+        <span class="event-date-text nf"></span>
+      </div>
+      <div class="event-title"></div>
+      <div class="slider-item-container"></div>
+      <div class="range-wrap" style="display: none">
+        <div class="range-value" id="rangeV"></div>
+        <input
+          id="range"
+          type="range"
+          min="200"
+          max="800"
+          value="200"
+          step="1"
+        />
+      </div>
+    </div>
+    <div class="line-chart-container" style="padding: 40px 80px">
+      <div id="line-chart"></div>
+    </div>
+    <div class="calender-map"></div>
+    <div class="cal-v2" style="padding-right: 30px"></div>
+    <div class="sub-tooltip">
+      <div class="close">X</div>
+      <div class="title"></div>
+      <div style="display: flex" class="type-container">
+        <div class="type1"></div>
+        /
+        <div class="type2"></div>
+      </div>
+      <div class="date"></div>
+      <div class="text"></div>
+    </div>
+    <div style="height: 300px"></div>
+  </body>
+  <script src="js/speechData.js"></script>
+  <script src="js/lineChartData.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/detail_m.js"></script>
+  <script src="js/lineChart.js"></script>
+  <!-- <script src="js/heatmap.js"></script> -->
+  <script src="js/speech.js"></script>
+</html>

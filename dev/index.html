@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>D3.js 연도 수직선 그래프</title>
+    <style>
+        .line {
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+
+        .big-line {
+            stroke: black;
+            stroke-width: 4px;
+        }
+
+        .label,
+        .circle-label,
+        .big-line-label {
+            font: 12px sans-serif;
+            fill: black;
+        }
+
+        .tooltip {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            position: absolute;
+            z-index: 999;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="960" height="500"></svg>
+
+    <!-- D3.js 라이브러리 포함 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/d3_graph.js"></script>
+</body>
+
+</html>
