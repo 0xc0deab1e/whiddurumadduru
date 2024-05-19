@@ -1,9 +1,8 @@
 
-const RED = '#e73921';
-const BLUE = '#5e83ba';
+const RED = '#E73924';
+const BLUE = '#5E83BA';
 const WHITE = 'white';
-const LAST_COLOR = '#ff0000';
-
+const LAST_COLOR = '#EA6969';
 const bigBars = [
     { year: 1940 }, { year: 1950 }, { year: 1960 }, { year: 1970 },
     { year: 1980 }, { year: 1990 }, { year: 2000 }, { year: 2010 },
