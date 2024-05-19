@@ -415,7 +415,6 @@ const data = [
     { date: new Date("2018-02-08"), values: [{ key: "박근혜", value: 0 }] },
     { date: new Date("2018-02-15"), values: [{ key: "문재인", value: 0 }] },
     { date: new Date("2018-02-22"), values: [{ key: "문재인", value: 99 }] },
-    { date: new Date("1900-01-29"), values: [{ key: "문재인", value: 100 }] },
     { date: new Date("2018-03-01"), values: [{ key: "문재인", value: 101 }] },
     { date: new Date("2018-03-08"), values: [{ key: "문재인", value: 101 }] },
     { date: new Date("2018-03-15"), values: [{ key: "문재인", value: 101 }] },

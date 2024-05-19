@@ -37,7 +37,7 @@ const series = stack(pollData);
 svg.append("g")
     .attr("class", "x-axis")
     .attr("transform", `translate(0,${height})`)
-    .call(d3.axisBottom(x).tickFormat(''))
+    .call(d3.axisBottom(x))
 
 // y축 추가 (숫자 레이블 표시)
 svg.append("g")
