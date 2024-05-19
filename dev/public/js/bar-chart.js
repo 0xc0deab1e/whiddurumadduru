@@ -2,9 +2,8 @@ function drawChart(name) {
     const pollData = getPollData(name);
     const startDate = name ? d3.min(pollData, d => d.date) : new Date("1940-01-01");
     const endDate = d3.max(pollData, d => d.date);
-    const margin = { top: 20, right: 30, bottom: 40, left: 40 };
     const width = document.getElementById('bar_chart').clientWidth;
-    const height = document.getElementById('bar_chart').clientHeight;
+    const height = document.getElementById('bar_chart').clientHeight * 0.6;
 // SVG 요소 생성
 const svg = d3.select("#bar_chart")
     .html("")
@@ -12,7 +11,6 @@ const svg = d3.select("#bar_chart")
     .attr("width", width)
     .attr("height", height)
     .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
 
 // x축과 y축 설정
 const x = d3.scaleTime()
