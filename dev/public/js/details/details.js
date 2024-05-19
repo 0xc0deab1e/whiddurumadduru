@@ -1,84 +1,112 @@
-const VoteData = [[91.80, '180'],
-[74.60, '5,238,769'],
-[70.00, '5,046,437'],
-[79.10, '208'],
-[46.60, '4,702,640'],
-[51.40, '5,688,666'],
-[53.20, '6,342,828'],
-[99.90, '2,357'],
-[99.80, '2,577'],
-[96.30, '2,465'],
-[99.40, '2,524'],
-[90.10, '4,755'],
-[36.60, '8,282,738'],
-[42.00, '9,977,332'],
-[40.30, '10,326,275'],
-[48.90, '12,014,277'],
-[48.70, '11,492,389'],
-[51.60, '15,773,128'],
-[41.10, '13,423,800'],
-[48.60, '16,394,815']]
+function getVoteDataByDate(date) {
+    const VoteData = [{ date: new Date("1940-01-01"), value: [91.80, '180', '이승만']},
+    { date: new Date("1950-01-01"), value: [74.60, '5,238,769', '이승만'] },
+    { date: new Date("1955-01-01"), value: [70.00, '5,046,437', '이승만'] },
+    { date: new Date("1960-01-01"), value: [79.10, '208', '윤보선'] },
+    { date: new Date("1966-01-01"), value: [46.60, '4,702,640', '박정희'] },
+    { date: new Date("1970-01-01"), value: [51.40, '5,688,666', '박정희'] },
+    { date: new Date("1977-01-01"), value: [53.20, '6,342,828', '박정희'] },
+    { date: new Date("1980-01-01"), value: [99.90, '2,357', '박정희'] },
+    { date: new Date("1985-01-01"), value: [99.80, '2,577', '박정희'] },
+    { date: new Date("1990-01-01"), value: [96.30, '2,465', '최규하'] },
+    { date: new Date("1995-01-01"), value: [99.40, '2,524', '전두환'] },
+    { date: new Date("1999-01-01"), value: [90.10, '4,755', '전두환'] },
+    { date: new Date("2000-01-01"), value: [36.60, '8,282,738', '노태우'] },
+    { date: new Date("2002-01-01"), value: [42.00, '9,977,332', '김영삼'] },
+    { date: new Date("2004-01-01"), value: [40.30, '10,326,275', '김대중'] },
+    { date: new Date("2006-01-01"), value: [48.90, '12,014,277', '노무현'] },
+    { date: new Date("2008-01-01"), value: [48.70, '11,492,389', '이명박'] },
+    { date: new Date("2010-01-01"), value: [51.60, '15,773,128', '박근혜'] },
+    { date: new Date("2020-01-01"), value: [41.10, '13,423,800', '문재인'] },
+    { date: new Date("2024-01-01"), value: [48.60, '16,394,815', '윤석열'] }];
+    return VoteData.filter(x => x.date <= date).sort((x, y) => y.date - x.date)[0].value;
+}
+
+function getRepresentativesByDate(date) {
+    const representatives = [
+        { date: new Date("1940-01-01"), value: [80, 70, 20] },
+        { date: new Date("1950-01-01"), value: [70, 70, 100] },
+        { date: new Date("1960-01-01"), value: [60, 70, 20] },
+        { date: new Date("1970-01-01"), value: [50, 10, 20] },
+        { date: new Date("1975-01-01"), value: [80, 70, 20] },
+        { date: new Date("1980-01-01"), value: [10, 70, 20] },
+        { date: new Date("1980-01-01"), value: [20, 60, 20] },
+        { date: new Date("1990-01-01"), value: [80, 70, 20] },
+        { date: new Date("2000-01-01"), value: [80, 70, 10] },
+        { date: new Date("2010-01-01"), value: [80, 50, 20] },
+        { date: new Date("2020-01-01"), value: [80, 70, 20] },
+        { date: new Date("2024-01-01"), value: [80, 70, 20] },
+    ];
+    return representatives.filter(x => x.date <= date).sort((x, y) => y.date - x.date)[0].value;
+}
+
+function getPresidentByDate(date) {
+    const presidents = [{ name: '이승만', value: new Date("1948-7-24") },
+    { name: '윤보선', value: new Date("1960-8-12") },
+    { name: '박정희', value: new Date("1963-12-17") },
+    { name: '최규하', value: new Date("1979-12-6") },
+    { name: '전두환', value: new Date("1980-8-27") },
+    { name: '노태우', value: new Date("1988-2-25") },
+    { name: '김영삼', value: new Date("1993-2-25") },
+    { name: '김대중', value: new Date("1998-2-25") },
+    { name: '노무현', value: new Date("2003-2-25") },
+    { name: '이명박', value: new Date("2008-2-25") },
+    { name: '박근혜', value: new Date("2013-2-25") },
+    { name: '문재인', value: new Date("2017-5-10") },
+    { name: '윤석열', value: new Date("2022-5-10") }];
+    return presidents.filter(x => x.value <= date).sort((x, y) => y.date - x.date)[0].name;
+}
 
 const datas = [
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
-        Representatives: [80, 70, 20],
-        voteData: VoteData[0]
+        date: new Date("2020-01-01"),
     },
     {
         image: '/img/xicon2.png',
         description: 'test',
-        Representatives: [10, 70, 20],
-        voteData: VoteData[1]
+        date: new Date("1960-01-01"),
     },
     {
         image: '/img/xicon1.png',
         description: 'ttttttt',
-        Representatives: [0, 0, 0],
-        voteData: VoteData[1]
+        date: new Date("1970-01-01"),
     },
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
-        Representatives: [0, 0, 0],
-        voteData: VoteData[2]
+        date: new Date("1980-01-01"),
     },
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
-        Representatives: [0, 0, 0],
-        voteData: VoteData[3]
+        date: new Date("1985-01-01"),
     },
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
-        Representatives: [0, 0, 0],
-        voteData: VoteData[4]
+        date: new Date("1990-01-01"),
     },
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
-        Representatives: [0, 0, 0],
-        voteData: VoteData[5]
+        date: new Date("1999-01-01"),
     },
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
-        Representatives: [0, 0, 0],
-        voteData: VoteData[6]
+        date: new Date("1980-01-01"),
     },
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
-        Representatives: [0, 0, 0],
-        voteData: VoteData[7]
+        date: new Date("1980-01-01"),
     },
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
-        Representatives: [0, 0, 0],
-        voteData: VoteData[0]
+        date: new Date("1980-01-01"),
     },
 ];
 
@@ -158,7 +186,8 @@ function updateChart(idx) {
     window.location.hash = '#' + index;
     highlight();
     transition();
-    loadData(datas[index].Representatives);
+    updatePoll(idx);
+    loadData(getRepresentativesByDate(datas[index].date));
 }
 
 function highlight() {
@@ -177,6 +206,11 @@ function highlight() {
     });
 }
 
+function updatePoll(idx) {
+    const voteData = getVoteDataByDate(datas[idx].date);
+    drawChart(voteData[2]);
+}
+
 function transition() {
     const carousel = document.querySelector('#carousel');
     const selectedThumbnail = document.querySelector(`#thumbnails > div > div > img:nth-child(${index + 1})`);
@@ -185,7 +219,6 @@ function transition() {
     const containerWidth = carousel.offsetWidth;
 
     let translateX = -(selectedThumbnailOffset - (containerWidth - selectedThumbnailWidth) / 2);
-    console.log(index, selectedThumbnailOffset, selectedThumbnailWidth, containerWidth, translateX);
     carousel.style.transform = `translate3d(${translateX}px, 0, 0)`;
 
     // 선택된 이미지 강조를 위해 선택된 이미지의 클래스 변경
@@ -217,10 +250,11 @@ function updateDescription(idx) {
 }
 
 function updateVotes(idx) {
+    const voteData = getVoteDataByDate(datas[idx].date);
     var rateDiv = document.getElementById('percentage');
-    rateDiv.innerHTML = `VOTE PERCENTAGE ${datas[idx].voteData[0]}%`;
+    rateDiv.innerHTML = `VOTE PERCENTAGE ${voteData[0]}%`;
     var countDiv = document.getElementById('count');
-    countDiv.innerHTML = `VOTE COUNT ${datas[idx].voteData[1]}`;
+    countDiv.innerHTML = `VOTE COUNT ${voteData[1]}`;
 }
 
 window.onload =
