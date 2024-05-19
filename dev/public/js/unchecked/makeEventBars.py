@@ -51,7 +51,7 @@ event_data_js = ",\n".join(
 js_content = f"const eventBars = [\n{event_data_js}\n];"
 
 # Define the output path for eventBars.js in the same directory as the script
-output_path = os.path.join(script_dir, 'eventBars.js')
+output_path = os.path.join(script_dir, 'eventBarData.js')
 
 # Check if the file already exists and delete it if it does
 if os.path.exists(output_path):
