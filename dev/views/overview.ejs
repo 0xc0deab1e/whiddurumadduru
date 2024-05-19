@@ -1,15 +1,28 @@
 <%- include('partials/header', { title: 'Dashboard' }) %>
 
     <main>
-        <figure class="highcharts-figure">
-            <div id="container"></div>
+        <div id="div1" style=" height: 80px; text-align: center;">
+            Div 1 (Fixed)
+        </div>
+        <figure class="highcharts-figure" style="display: flex; flex-direction: row;">
+            <div id="container" style="height: 700px; flex: 5;"></div>
+            <div id="div2" style="height: 250px; flex: 1; background-color: lightgreen;">
+                Div 2 (Right side)
+            </div>
         </figure>
+        <div id="div3" class="toast">
+            <div id="toastContent">Div 3 (Toast Pop-up)</div>
+            <button id="toggleButton">▲</button>
+        </div>
     </main>
 
+
     <%- include('partials/footer') %>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <script src="/js/heatmap/heatmap.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="/js/heatmap/heatmap.js"></script>
+        <link rel="stylesheet" href="/css/heatmap.css">
+        <script src="/js/heatmap/responsive.js"></script>
