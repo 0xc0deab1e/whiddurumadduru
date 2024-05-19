@@ -1109,21 +1109,38 @@ const eventBars = [
     { date: new Date(2023, 10, 16), title: "장모 잔고증명 위조 징역 실형 확정" }
 ];
 
-const svgWidth = 430;
-const svgHeight = 1100; // 기존보다 높이를 더 크게 설정하여 rect가 잘리지 않도록 함
+const svgWidth = document.documentElement.clientWidth;
+const svgHeight = document.documentElement.clientHeight;
 const width = svgWidth;
 const height = svgHeight;
 
 const rectWidth = width * 0.1 - 10;
-const rectX = (width - rectWidth) / 2 + 90;
+const rectX = (width - rectWidth) / 2 + 90 - (width * 0.20);
 
 const svg = d3.select("svg")
     .attr("width", svgWidth)
     .attr("height", svgHeight)
     .style("background-color", "#D6D6D6");
 
+const translateY = (() => {
+    function getTranslateY() {
+        const screenWidth = window.innerWidth;
+        if (screenWidth < 376) {
+            return 10;
+        } else if (screenWidth < 769) {
+            return 30;
+        } else {
+            return 50;
+        }
+    }
+
+    return getTranslateY();
+})();
+
 const chartGroup = svg.append("g")
-    .attr("transform", "translate(0, 100)");
+    .attr("transform", `translate(${width * -0.1}, ${translateY + (svgHeight * 0.01)})`); // 5% 공백 추가
+
+
 
 const y = d3.scaleTime()
     .domain([new Date(1940, 0, 1), new Date(2027, 0, 1)])
@@ -1144,7 +1161,7 @@ chartGroup.selectAll(".big-line")
     .attr("class", "big-line")
     .attr("x1", rectX - 80)
     .attr("y1", d => y(new Date(d.year, 0, 1)))
-    .attr("x2", rectX + rectWidth + 30)
+    .attr("x2", rectX + rectWidth + 40)
     .attr("y2", d => y(new Date(d.year, 0, 1)))
     .attr("stroke", "black")
     .attr("stroke-width", 1);
@@ -1153,8 +1170,8 @@ chartGroup.selectAll(".big-line-label")
     .data(bigBars)
     .enter().append("text")
     .attr("class", "big-line-label")
-    .attr("x", rectX + rectWidth + 45)
-    .attr("y", d => y(new Date(d.year, 0, 1)) + 5) // big-line과 수평 맞춤
+    .attr("x", rectX + rectWidth + 55)
+    .attr("y", d => y(new Date(d.year, 0, 1)) + 5)
     .attr("text-anchor", "middle")
     .attr("font-size", "10px")
     .text(d => d.year);
@@ -1185,7 +1202,7 @@ const lines = chartGroup.selectAll(".line")
     .attr("class", "line")
     .attr("x1", rectX - 50)
     .attr("y1", d => y(new Date(d.year, 0, 1)))
-    .attr("x2", rectX + rectWidth + 20)
+    .attr("x2", rectX + rectWidth + 30)
     .attr("y2", d => y(new Date(d.year, 0, 1)));
 
 const nameLabels = chartGroup.selectAll(".name-label")
@@ -1202,7 +1219,7 @@ const yearLabels = chartGroup.selectAll(".year-label")
     .data(smallBars)
     .enter().append("text")
     .attr("class", "year-label")
-    .attr("x", rectX + rectWidth + 12)
+    .attr("x", rectX + rectWidth + 30)
     .attr("y", d => y(new Date(d.year, 0, 1)) + 5)
     .attr("font-size", "8px")
     .text(d => d.year);
@@ -1213,7 +1230,7 @@ chartGroup.selectAll(".circle-line")
     .attr("class", "circle-line")
     .attr("x1", rectX - 50)
     .attr("y1", d => y(new Date(d.year, 0, 1)))
-    .attr("x2", rectX + rectWidth + 10)
+    .attr("x2", rectX + rectWidth + 30)
     .attr("y2", d => y(new Date(d.year, 0, 1)))
     .attr("stroke", "black")
     .attr("stroke-width", 0.5);
@@ -1303,21 +1320,21 @@ chartGroup.selectAll(".event")
     .data(eventBars)
     .enter().append("line")
     .attr("class", "event")
-    .attr("x1", rectX - 80)  // big-line과 동일한 x1
+    .attr("x1", rectX - 80)
     .attr("y1", d => y(d.date))
-    .attr("x2", rectX + rectWidth + 30)  // big-line과 동일한 x2
+    .attr("x2", rectX + rectWidth + 30)
     .attr("y2", d => y(d.date))
-    .attr("stroke", "transparent") // 색상 변경
+    .attr("stroke", "transparent")
     .attr("stroke-width", 2)
     .attr("opacity", 0.7)
     .on("mouseenter", showEventData)
     .on("mouseout", hideEventData)
-    .on("touchstart", showEventData) // 터치 시작 이벤트 추가
-    .on("touchend", hideEventData);  // 터치 종료 이벤트 추가
+    .on("touchstart", showEventData)
+    .on("touchend", hideEventData);
 
 function showEventData(event, d) {
-    const tooltipX = rectX - 200; // 이벤트 바의 왼쪽에 툴팁을 배치
-    const mouseY = event.pageY; // 마우스 위치에 따라 상하 위치 설정
+    const tooltipX = rectX - 110;
+    const mouseY = event.pageY;
     d3.select("body").append("div")
         .attr("class", "tooltip")
         .style("left", `${tooltipX}px`)
@@ -1325,10 +1342,10 @@ function showEventData(event, d) {
         .style("position", "absolute")
         .style("color", "black")
         .style("padding", "5px")
-        .style("font-size", "12px") // 텍스트 크기 조정
-        .style("background-color", "transparent") // 배경색 투명
-        .style("border", "none") // 테두리 없음
-        .html(`${d.date.getFullYear()}/${d.date.getMonth() + 1}/${d.date.getDate()}<br>${d.title}`); // 줄 바꿈 추가
+        .style("font-size", "12px")
+        .style("background-color", "transparent")
+        .style("border", "none")
+        .html(`${d.date.getFullYear()}/${d.date.getMonth() + 1}/${d.date.getDate()}<br>${d.title}`);
 }
 
 function hideEventData() {
