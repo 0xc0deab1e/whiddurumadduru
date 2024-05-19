@@ -39,7 +39,7 @@ const svgHeight = 300;
 const width = svgWidth;
 const height = svgHeight;
 
-const rectHeight = height * 0.8 - 170; // 위아래로 85픽셀씩 줄임
+const rectHeight = height * 0.8 - 170;
 
 const svg = d3.select("svg")
   .attr("width", svgWidth)
@@ -52,15 +52,14 @@ const x = d3.scaleTime()
   .domain([new Date(1940, 0, 1), new Date(2027, 0, 1)])
   .range([0, width]);
 
-// big-line을 검은색 직선으로 설정하고 위치 조정
 chartGroup.selectAll(".big-line")
   .data(bigBars)
   .enter().append("line")
   .attr("class", "big-line")
   .attr("x1", d => x(new Date(d.year, 0, 1)))
-  .attr("y1", 5) // SVG의 위쪽에서 5픽셀 아래
+  .attr("y1", 5)
   .attr("x2", d => x(new Date(d.year, 0, 1)))
-  .attr("y2", height - 20) // SVG의 아래쪽에서 10픽셀 위
+  .attr("y2", height - 20)
   .attr("stroke", "black")
   .attr("stroke-width", 1.5);
 
@@ -70,16 +69,16 @@ chartGroup.selectAll(".big-line-label")
   .attr("class", "big-line-label")
   .attr("x", d => x(new Date(d.year, 0, 1)) + 5)
   .attr("y", height - 5)
-  .attr("text-anchor", "middle") // 중앙 정렬
+  .attr("text-anchor", "middle")
   .text(d => d.year);
 
-const rectY = (height - rectHeight) / 2; // rect의 y 위치 계산
+const rectY = (height - rectHeight) / 2;
 
 function appendRect(xPos, width, color) {
   chartGroup.append("rect")
     .attr("class", "rect")
     .attr("x", xPos)
-    .attr("y", rectY) // 30픽셀 위쪽으로 이동
+    .attr("y", rectY)
     .attr("width", width)
     .attr("height", rectHeight)
     .attr("fill", color)
@@ -116,42 +115,35 @@ const lines = chartGroup.selectAll(".line")
   .attr("x2", d => x(new Date(d.year, 0, 1)))
   .attr("y2", height * 0.2);
 
-// name 레이블을 유지
+
 const nameLabels = chartGroup.selectAll(".name-label")
   .data(smallBars)
   .enter().append("text")
   .attr("class", "name-label")
   .attr("x", d => x(new Date(d.year, 0, 1)) + 5)
-  .attr("y", (height + rectHeight) / 2 + 20) // rect 요소의 아래에 배치
+  .attr("y", (height + rectHeight) / 2 + 20)
   .text(d => d.name);
 
-// year 레이블을 중앙에 배치
+
 const yearLabels = chartGroup.selectAll(".year-label")
   .data(smallBars)
   .enter().append("text")
   .attr("class", "year-label")
   .attr("x", d => x(new Date(d.year, 0, 1)))
-  .attr("y", height - 45) // circle-line과 겹치지 않도록 아래로 조정
+  .attr("y", height - 45)
   .attr("text-anchor", "middle")
   .text(d => d.year);
 
-
-// 기존의 circle 요소를 교체하여 직선으로 변경
 chartGroup.selectAll(".circle")
   .data(smallBars)
   .enter().append("line")
   .attr("class", "circle-line")
   .attr("x1", d => x(new Date(d.year, 0, 1)))
-  .attr("y1", rectY) // rect의 윗부분과 동일하게 맞춤
+  .attr("y1", rectY)
   .attr("x2", d => x(new Date(d.year, 0, 1)))
   .attr("y2", height - 60)
   .attr("stroke", "black")
   .attr("stroke-width", 1);
-
-// zoom 함수에서 기존의 circle 요소 업데이트를 직선으로 변경
-chartGroup.selectAll(".circle-line")
-  .attr("x1", d => newX(new Date(d.year, 0, 1)))
-  .attr("x2", d => newX(new Date(d.year, 0, 1)));
 
 const zoom = d3.zoom()
   .scaleExtent([1, 40])
@@ -164,15 +156,14 @@ svg.call(zoom);
 function zoomed(event) {
   const newX = event.transform.rescaleX(x);
 
-  // big-line을 검은색 직선으로 설정하고 위치 조정
   chartGroup.selectAll(".big-line")
     .data(bigBars)
     .enter().append("line")
     .attr("class", "big-line")
     .attr("x1", d => x(new Date(d.year, 0, 1)))
-    .attr("y1", 5) // SVG의 위쪽에서 5픽셀 아래
+    .attr("y1", 5)
     .attr("x2", d => x(new Date(d.year, 0, 1)))
-    .attr("y2", height - 10) // SVG의 아래쪽에서 10픽셀 위
+    .attr("y2", height - 10)
     .attr("stroke", "black")
     .attr("stroke-width", 1.5);
 
@@ -230,9 +221,9 @@ chartGroup.selectAll(".event")
   .enter().append("line")
   .attr("class", "event")
   .attr("x1", d => x(d.date))
-  .attr("y1", 5)  // 시작 y 좌표
+  .attr("y1", 5)
   .attr("x2", d => x(d.date))
-  .attr("y2", height - 5)  // 끝 y 좌표
+  .attr("y2", height - 5)
   .attr("stroke", "transparent")
   .attr("stroke-width", 2)
   .attr("opacity", 0.7)
@@ -245,9 +236,8 @@ function showEventData(event, d) {
   d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("left", mouseX + "px")
-    .style("top", (mouseY - 20) + "px")  // 마우스 포인터 위쪽으로 20픽셀 이동
+    .style("top", (mouseY - 20) + "px")
     .style("position", "absolute")
-    // .style("background-color", "rgba(0, 0, 0, 0.7)") // 배경색 제거
     .style("color", "black")
     .style("padding", "5px")
     .style("border-radius", "5px")
