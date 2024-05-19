@@ -1,25 +1,52 @@
 <%- include('partials/header', { title: 'Overview' }) %>
     <!--append return to general overview-->
-<main>
-    <div id="thumbnails">
-        IMAGE LIST
-        <!-- image list -->
-    </div>
-    <div id="details_main">
-        <div>
-            INFORMATION
-            <!-- information -->
+    <main>
+        <div id="thumbnails" class="carousel-container">
+            <div class="carousel-wrapper">
+                <div id="carousel">
+                </div>
+                <button class="carousel-control-prev" type="button">prev</button>
+                <button class="carousel-control-next" type="button">next</button>
+            </div>
         </div>
-        <div id="image">
-            <!-- big image -->
-            IMAGE
-        </div>
-        <div>
-            <!-- description -->
-            DESC
-        </div>
-    </div>
 
-</main>
 
-<%- include('partials/footer') %>
+        <div id="details_main">
+            <div id="Parliament">
+                <figure class="highcharts-figure">
+                    <div id="Parliament_container"></div>
+                </figure>
+                <div id="votes">
+                    <div id="percentage">
+                    </div>
+                    <div id="count">
+                    </div>
+                </div>
+                <div id="bar_chart">
+                    bar chart (to be done)
+                </div>
+            </div>
+            <div id="selectedThumbnail">
+                <!-- big image -->
+                IMAGE
+            </div>
+            <div id="description">
+                <!-- description -->
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec nibh lorem. Nulla urna leo,
+                ullamcorper vel tellus a, mattis tincidunt turpis. Integer sit amet ex risus. Praesent a lectus orci. In
+                non cursus ligula. Curabitur sit amet placerat nisi. Morbi auctor at mauris ullamcorper commodo. Sed
+                varius quam mattis fermentum pulvinar. Curabitur massa nibh, imperdiet at blandit vel, fringilla ac
+                metus. Maecenas felis orci, hendrerit non purus eget, vestibulum volutpat nisi.
+            </div>
+        </div>
+
+    </main>
+
+    <%- include('partials/footer') %>
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/item-series.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="/js/details/details.js"></script>

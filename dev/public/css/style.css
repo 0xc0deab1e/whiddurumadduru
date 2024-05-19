@@ -19,16 +19,128 @@ header, footer {
 
 #details_main > div {
   width: 200px;
-  height: 150px;
   background-color: #f0f0f0;
   margin: 10px;
   text-align: center;
-  line-height: 150px;
   font-size: 1.5em;
   flex-grow: 1;
   margin: 0 5px;
 }
 
-#details_main > #image {
+#Parliament > .highcharts-figure {
+  width: 100%;
+  height: 100%; /* 부모 요소의 높이에 맞추기 위해 100%의 높이를 가집니다. */
+}
+
+#Parliament > .highcharts-figure > #Parliament_container {
+  width: 100%;
+  height: 100%; /* 부모 요소의 높이에 맞추기 위해 100%의 높이를 가집니다. */
+}
+
+#details_main > #selectedThumbnail {
   flex-grow: 3;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+    min-width: 320px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+
+input[type="number"] {
+    min-width: 50px;
+}
+
+/* 선택된 썸네일에 대한 스타일 */
+.thumbnail-highlight {
+  filter: none; /* 채도를 원래대로 유지 */
+}
+
+/* 선택되지 않은 썸네일에 대한 스타일 */
+.thumbnail-dim {
+  filter: grayscale(50%); /* 채도를 낮춤 */
+}
+
+.carousel-wrapper {
+  height: 200px;
+  overflow: hidden;
+}
+
+.carousel-wrapper > #carousel {
+  display: flex;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.2s;
+}
+
+.carousel-wrapper > #carousel > img {
+  width: auto;
+  height: 200px;
+}
+
+#carousel img {
+  display: block;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: -50%;
+    transform: translateY(-50%);
+    z-index: 1; /* 이미지보다 위에 나타나도록 설정 */
+    /* 원하는 스타일을 추가하세요 */
+}
+
+.carousel-control-prev {
+    left: 10px; /* 이전 버튼의 왼쪽 위치 */
+}
+
+.carousel-control-next {
+    right: 10px; /* 다음 버튼의 오른쪽 위치 */
+}
+
+#selectedThumbnail img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#description {
+  max-height: 860px;
+  overflow: scroll;
 }
