@@ -57,59 +57,6 @@ function getPresidentByDate(date) {
     return presidents.filter(x => x.value <= date).sort((x, y) => y.date - x.date)[0].name;
 }
 
-const datas = [
-    {
-        image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
-        date: new Date("2020-01-01"),
-    },
-    {
-        image: '/img/xicon2.png',
-        description: 'test',
-        date: new Date("1960-01-01"),
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'ttttttt',
-        date: new Date("1970-01-01"),
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
-        date: new Date("1980-01-01"),
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
-        date: new Date("1985-01-01"),
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
-        date: new Date("1990-01-01"),
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
-        date: new Date("1999-01-01"),
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
-        date: new Date("1980-01-01"),
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
-        date: new Date("1980-01-01"),
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
-        date: new Date("1980-01-01"),
-    },
-];
-
 const chart = Highcharts.chart('Parliament_container', {
 
     chart: {
@@ -208,7 +155,7 @@ function highlight() {
 
 function updatePoll(idx) {
     const voteData = getVoteDataByDate(datas[idx].date);
-    drawChart(voteData[2]);
+    drawChart(voteData[2], false);
 }
 
 function transition() {

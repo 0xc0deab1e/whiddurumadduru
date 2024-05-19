@@ -1,7 +1,7 @@
-function drawChart(name) {
+function drawChart(name, fullDuration) {
     const pollData = getPollData(name);
-    const startDate = name ? d3.min(pollData, d => d.date) : new Date("1940-01-01");
-    const endDate = d3.max(pollData, d => d.date);
+    const startDate = fullDuration ? new Date("1940-01-01") : d3.min(pollData, d => d.date);
+    const endDate = fullDuration ? new Date("2027-01-01") : d3.max(pollData, d => d.date);
     const width = document.getElementById('bar_chart').clientWidth;
     const height = document.getElementById('bar_chart').clientHeight * 0.6;
 // SVG 요소 생성
