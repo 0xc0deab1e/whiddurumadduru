@@ -1,12 +1,21 @@
 <%- include('partials/header', { title: 'Home' }) %>
+    <style>
+        .graph-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+    </style>
+    <main>
+        <div id="graph-container">
+            <svg></svg>
+        </div>
+    </main>
 
-<main>
-    <div id="graph-container">
-        <svg></svg>
-    </div>
-</main>
+    <%- include('partials/footer') %>
 
-<%- include('partials/footer') %>
-
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="/js/index/d3_graph_m.js"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="/js/index/d3_graph_m.js"></script>
