@@ -1,58 +1,40 @@
-const VoteData = [[91.80, '180'],
-[74.60, '5,238,769'],
-[70.00, '5,046,437'],
-[79.10, '208'],
-[46.60, '4,702,640'],
-[51.40, '5,688,666'],
-[53.20, '6,342,828'],
-[99.90, '2,357'],
-[99.80, '2,577'],
-[96.30, '2,465'],
-[99.40, '2,524'],
-[90.10, '4,755'],
-[36.60, '8,282,738'],
-[42.00, '9,977,332'],
-[40.30, '10,326,275'],
-[48.90, '12,014,277'],
-[48.70, '11,492,389'],
-[51.60, '15,773,128'],
-[41.10, '13,423,800'],
-[48.60, '16,394,815']]
+const VoteData = [[91.80, '180', '이승만'],
+[74.60, '5,238,769', '이승만'],
+[70.00, '5,046,437', '이승만'],
+[79.10, '208', '윤보선'],
+[46.60, '4,702,640', '박정희'],
+[51.40, '5,688,666', '박정희'],
+[53.20, '6,342,828', '박정희'],
+[99.90, '2,357', '박정희'],
+[99.80, '2,577', '박정희'],
+[96.30, '2,465', '최규하'],
+[99.40, '2,524', '전두환'],
+[90.10, '4,755', '전두환'],
+[36.60, '8,282,738', '노태우'],
+[42.00, '9,977,332', '김영삼'],
+[40.30, '10,326,275', '김대중'],
+[48.90, '12,014,277', '노무현'],
+[48.70, '11,492,389', '이명박'],
+[51.60, '15,773,128', '박근혜'],
+[41.10, '13,423,800', '문재인'],
+[48.60, '16,394,815', '윤석열']]
 
 const datas = [
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
         Representatives: [80, 70, 20],
-        voteData: VoteData[0]
+        voteData: VoteData[17]
     },
     {
         image: '/img/xicon2.png',
         description: 'test',
         Representatives: [10, 70, 20],
-        voteData: VoteData[1]
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'ttttttt',
-        Representatives: [0, 0, 0],
-        voteData: VoteData[1]
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
-        Representatives: [0, 0, 0],
-        voteData: VoteData[2]
-    },
-    {
-        image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
-        Representatives: [0, 0, 0],
         voteData: VoteData[3]
     },
     {
         image: '/img/xicon1.png',
-        description: 'desc<b>ription</b>',
+        description: 'ttttttt',
         Representatives: [0, 0, 0],
         voteData: VoteData[4]
     },
@@ -60,25 +42,43 @@ const datas = [
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
         Representatives: [0, 0, 0],
-        voteData: VoteData[5]
+        voteData: VoteData[9]
     },
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
         Representatives: [0, 0, 0],
-        voteData: VoteData[6]
+        voteData: VoteData[10]
     },
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
         Representatives: [0, 0, 0],
-        voteData: VoteData[7]
+        voteData: VoteData[12]
     },
     {
         image: '/img/xicon1.png',
         description: 'desc<b>ription</b>',
         Representatives: [0, 0, 0],
-        voteData: VoteData[0]
+        voteData: VoteData[13]
+    },
+    {
+        image: '/img/xicon1.png',
+        description: 'desc<b>ription</b>',
+        Representatives: [0, 0, 0],
+        voteData: VoteData[14]
+    },
+    {
+        image: '/img/xicon1.png',
+        description: 'desc<b>ription</b>',
+        Representatives: [0, 0, 0],
+        voteData: VoteData[15]
+    },
+    {
+        image: '/img/xicon1.png',
+        description: 'desc<b>ription</b>',
+        Representatives: [0, 0, 0],
+        voteData: VoteData[16]
     },
 ];
 
@@ -158,6 +158,7 @@ function updateChart(idx) {
     window.location.hash = '#' + index;
     highlight();
     transition();
+    updatePoll(idx);
     loadData(datas[index].Representatives);
 }
 
@@ -177,6 +178,10 @@ function highlight() {
     });
 }
 
+function updatePoll(idx) {
+    drawChart(datas[idx].voteData[2]);
+}
+
 function transition() {
     const carousel = document.querySelector('#carousel');
     const selectedThumbnail = document.querySelector(`#thumbnails > div > div > img:nth-child(${index + 1})`);
@@ -185,7 +190,6 @@ function transition() {
     const containerWidth = carousel.offsetWidth;
 
     let translateX = -(selectedThumbnailOffset - (containerWidth - selectedThumbnailWidth) / 2);
-    console.log(index, selectedThumbnailOffset, selectedThumbnailWidth, containerWidth, translateX);
     carousel.style.transform = `translate3d(${translateX}px, 0, 0)`;
 
     // 선택된 이미지 강조를 위해 선택된 이미지의 클래스 변경
