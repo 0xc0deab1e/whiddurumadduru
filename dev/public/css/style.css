@@ -11,13 +11,13 @@ header, footer {
   padding: 10px;
 }
 
-#main {
+#details_main {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-#main > div {
+#details_main > div {
   width: 200px;
   height: 150px;
   background-color: #f0f0f0;
@@ -25,4 +25,10 @@ header, footer {
   text-align: center;
   line-height: 150px;
   font-size: 1.5em;
+  flex-grow: 1;
+  margin: 0 5px;
+}
+
+#details_main > #image {
+  flex-grow: 3;
 }
