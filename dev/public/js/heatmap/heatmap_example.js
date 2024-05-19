@@ -1,3 +1,30 @@
+const data = {
+    raw: [
+      { header: "sp|Q9W678|P53_BARBU Cellular tumor antigen p53 OS=Barbus barbus GN=tp53 PE=2 SV=1", seq: "MAESQEFAELWERNLISTQEAGTCWELINDEYLPSSFDPNIFDNVLTEQP…LELSDVVPPSEMDRYRQKLLTKGKKKDGQTPEPKRGKKLMVKDEKSDSD", seq_len: 369, seq_name: "P53_BARBU", seq_full_str: "MAESQEFAELWERNLISTQEAGTCWELINDEYLPSSFDPNIFDNVLTEQP…GQTPEPKRGKKLMVKDEKSDSD---------------------------", seq_full: Array(2) },
+      { header: "sp|Q29537|P53_CANFA Cellular tumor antigen p53 OS=Canis familiaris GN=TP53 PE=2 SV=2", seq: "MEESQSELNIDPPLSQETFSELWNLLPENNVLSSELCPAVDELLLPESVV…NEALELKDAQSGKEPGGSRAHSSHLKAKKGQSTSRHKKLMFKREGLDSD", seq_len: 381, seq_name: "P53_CANFA", seq_full_str: "MEESQSELNIDPPLSQETFSELWNLLPENNVLSSELCPAVDELLLPESVV…GGSRAHSSHLKAKKGQSTSRHKKLMFKREGLDSD---------------", seq_full: Array(2) },
+      // 나머지 raw 데이터
+    ],
+    derive: [
+      { n: "P53_BARBU", k: 0, v: "M" },
+      { n: "P53_BARBU", k: 1, v: "A" },
+      // 나머지 derive 데이터
+    ],
+    total_len: 2
+  };
+
+const data_viz = {
+    heatmap: [
+      { n: "P53_BARBU", k: 0, v: "M", mode: "M", "vega_id": 2 },
+      { n: "P53_BARBU", k: 1, v: "A", mode: "E", "vega_id": 3 },
+      // 나머지 heatmap 데이터
+    ],
+    bar: [
+      { k: 0, v: "M", cnt: 31, "Conversion Rate": 0.9117647058823529, "vega_id": 13862 },
+      { k: 1, v: "E", cnt: 24, "Conversion Rate": 0.7058823529411765, "vega_id": 13863 },
+      // 나머지 bar 데이터
+    ]
+  };
+
 const brush = vl.selectInterval().encodings('x').init({ x: [0, 40] });
 const hover = vl.selectSingle('hover').on('mouseover').encodings("x").nearest(true).clear("mouseout");
 const proteinList = Array.from(new Set(data_viz.heatmap.map(d => d.n)));
