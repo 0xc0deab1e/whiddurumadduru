@@ -8,19 +8,19 @@ Highcharts.chart('container', {
         plotBorderWidth: 1,
     },
     title: {
-        text: 'Sales per employee per weekday',
-        style: {
-            fontSize: '1em'
-        }
+        text: '',
     },
     xAxis: {
-        categories: [
-            'Alexander', 'Marie', 'Maximilian', 'Sophia', 'Lukas',
-            'Maria', 'Leon', 'Anna', 'Tim', 'Laura'
-        ]
+        labels: {
+            enabled: false
+        },
+        categories: []
     },
     yAxis: {
-        categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        categories: [],
+        labels: {
+            enabled: false
+        },
         title: null,
         reversed: true
     },
@@ -40,6 +40,7 @@ Highcharts.chart('container', {
         ]
     },
     legend: {
+        enabled: false,
         align: 'right',
         layout: 'vertical',
         margin: 0,
@@ -48,25 +49,36 @@ Highcharts.chart('container', {
         symbolHeight: 280
     },
     tooltip: {
-        format: '<b>{series.xAxis.categories.(point.x)}</b> sold<br>' +
-            '<b>{point.value}</b> items on <br>' +
-            '<b>{series.yAxis.categories.(point.y)}</b>'
+        useHTML: true,
+        formatter: function() {
+            const value = this.point.value;
+
+            return `<div style="text-align: center;">
+                        <img src="${value}" style="width: 50px; height: 50px;" alt="Image"/><br>
+                    </div>`;
+        }
     },
     series: [{
         name: 'Sales per employee',
         borderWidth: 1,
-        data: [
-            [0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67],
-            [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 48],
-            [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52],
-            [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16],
-            [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115],
-            [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120],
-            [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96],
-            [7, 0, 31], [7, 1, 1], [7, 2, 82], [7, 3, 32], [7, 4, 30],
-            [8, 0, 85], [8, 1, 97], [8, 2, 123], [8, 3, 64], [8, 4, 84],
-            [9, 0, 47], [9, 1, 114], [9, 2, 31], [9, 3, 48], [9, 4, 91]
-        ],
+        point: {
+            events: {
+                mouseOver: function () {
+                    d3.selectAll(".positive_chart_bar").remove();
+                    d3.selectAll(".negative_chart_bar").remove();
+                    drawStackedBarChart(this.options.positive, 160, 10, '#positive_chart');
+                    drawStackedBarChart(this.options.negative, 160, 10, '#negative_chart');
+                    document.querySelector('#positive_status').innerHTML = `<span style="color: #e73921;">${this.options.positive[0]}</span> <span style="color: #5e83ba;">${this.options.positive[1]}</span> <span style="color: white;">${this.options.positive[2]}</span>`;
+                    document.querySelector('#negative_status').innerHTML = `<span style="color: #e73921;">${this.options.negative[0]}</span> <span style="color: #5e83ba;">${this.options.negative[1]}</span> <span style="color: white;">${this.options.negative[2]}</span>`;
+                    console.log(this.options.date, getPresidentByDate(this.options.date));
+                    drawChart(getPresidentByDate(this.options.date), true);
+                },
+                mouseOut: function() {
+                    drawChart(null, true);
+                }
+            }
+        },
+        data: thumbnailData,
         dataLabels: {
             enabled: true,
             color: '#000000'
@@ -78,21 +90,6 @@ Highcharts.chart('container', {
                 maxWidth: 500
             },
             chartOptions: {
-                legend: {
-                    align: 'center',
-                    verticalAlign: 'bottom',
-                    layout: 'horizontal'
-                },
-                yAxis: {
-                    labels: {
-                        align: 'left',
-                        x: 0,
-                        y: -5
-                    },
-                    title: {
-                        text: null
-                    }
-                },
                 subtitle: {
                     text: null
                 },
@@ -103,3 +100,11 @@ Highcharts.chart('container', {
         }]
     }
 });
+
+window.onload = function() {
+    const red = thumbnailData.filter(x => x.color === '#e73921').length;
+    const blue = thumbnailData.filter(x => x.color === '#5e83ba').length;
+    const white = thumbnailData.filter(x => x.color === 'white').length;
+    drawSummaryChart(red, blue, white);
+    drawChart(null, true);
+}

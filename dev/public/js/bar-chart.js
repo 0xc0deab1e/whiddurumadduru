@@ -17,7 +17,7 @@ const x = d3.scaleTime()
     .range([0, width]);
 
 const y = d3.scaleLinear()
-    .domain([0, d3.max(pollData, d => d3.sum(d.values, v => v.value))])
+    .domain([0, 100])
     .nice()
     .range([height, 0]);
 
@@ -50,5 +50,94 @@ svg.selectAll(".serie")
     .attr("x", d => x(d.data.date))
     .attr("y", d => y(d[1]))
     .attr("height", d => y(d[0]) - y(d[1]))
-    .attr("width", width / pollData.length * 0.8);
+    .attr("width", width / 572 * 0.8);
+}
+
+function drawStackedBarChart(values, width, height, appendTo) {
+var data = [
+    {values: values},
+  ];
+  
+  var stackedData = d3.stack()
+    .keys(d3.range(data[0].values.length))
+    (data.map(function(d) { return d.values; }));
+  
+var svg = d3.select(appendTo)
+    .append("svg")
+    .attr("class", `${appendTo.slice(1)}_bar`)
+    .append("g")
+  
+  var x = d3.scaleLinear()
+    .domain([0, d3.max(stackedData[stackedData.length - 1], function(d) { return d[1]; })])
+    .range([0, width]);
+  
+  var y = d3.scaleBand()
+    .domain(data.map(function(d) { return d.category; }))
+    .range([height, 0])
+    .padding(0.1);
+  
+  var color = d3.scaleOrdinal()
+    .range(["#e73921", "#5e83ba", "white"]);
+  
+  svg.selectAll(".bar")
+    .data(stackedData)
+    .enter().append("g")
+    .attr("class", "bar")
+    .attr("fill", function(d, i) { return color(i); })
+    .selectAll("rect")
+    .data(function(d) { return d; })
+    .enter().append("rect")
+    .attr("x", function(d) { return x(d[0]); })
+    .attr("y", function(d, i) { return y(data[i].category); })
+    .attr("width", function(d) { return x(d[1]) - x(d[0]); })
+    .attr("height", y.bandwidth());  
+}
+
+function drawSummaryChart(red, blue, white) {
+    // 데이터 정의
+const data = [
+    { party: "Conservative", count: red },
+    { party: "Progressive", count: blue },
+    { party: "Independent", count: white }
+  ];
+  
+  // 전체 비율 합 계산
+  const totalPercentage = data.reduce((acc, d) => acc + d.count, 0);
+  
+  // SVG 요소 생성
+  const svgWidth = 100;
+  const svgHeight = 100;
+  const barPadding = 5;
+  
+  const svg = d3.select("#summary")
+    .append("svg")
+    .attr("width", svgWidth)
+    .attr("height", svgHeight);
+  
+  // 가로막대 그리기
+  svg.selectAll("rect")
+    .data(data)
+    .enter()
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", (d, i) => i * (svgHeight / data.length) + barPadding) // 막대 간 간격 고려
+    .attr("width", d => (d.count / totalPercentage) * svgWidth) // 비율에 따라 너비 조정
+    .attr("height", svgHeight / data.length - 2 * barPadding) // 막대 두께 조정
+    .attr("fill", d => {
+      if (d.party === "Conservative") return "#e73921";
+      else if (d.party === "Progressive") return "#5e83ba";
+      else return "white";
+    });
+  
+  // 텍스트 레이블 추가
+  svg.selectAll("text")
+    .data(data)
+    .enter()
+    .append("text")
+    .text(d => `${d.party} (${d.count})`)
+    .attr("x", 5) // 막대 시작 부분에 텍스트 표시
+    .attr("y", (d, i) => i * (svgHeight / data.length) + (svgHeight / data.length) / 2)
+    .attr("text-anchor", "start")
+    .attr("fill", "black")
+    .attr("alignment-baseline", "middle");
 }

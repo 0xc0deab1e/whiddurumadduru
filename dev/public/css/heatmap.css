@@ -5,13 +5,10 @@ body, html {
 	height: 100%;
 	background-color: #D6D6D6;
 	font-family: Arial, sans-serif;
-	overflow: auto;
-	/* Add this line to make the page scrollable */
+	overflow: scroll;
 }
 
 #div1 {
-	background-color: #ffcccb;
-	/* 쉽게 보이도록 빨간색 배경 */
 	padding: 10px;
 	margin-left: 10%;
 	margin-right: 10%;
@@ -20,7 +17,10 @@ body, html {
 	text-align: center;
 }
 
-/* Ensure the graph and div2 fill the entire area */
+#bar_chart {
+	width: 80%;
+}
+
 #container {
 	width: 75%;
 	height: 100vh;
@@ -32,17 +32,14 @@ body, html {
 #div2 {
 	width: 25%;
 	height: 100vh;
-	/* Fill the full height of the viewport */
 	padding: 0 15px;
 	display: inline-block;
-	background-color: lightgreen;
 }
 
 #main-content {
 	display: flex;
 	flex-grow: 1;
 	height: calc(100% - 50px);
-	/* Div1 height 고려 */
 }
 
 #highchart {
@@ -50,12 +47,10 @@ body, html {
 	padding: 10px;
 }
 
-/* Styles for div3 toast popup */
 #div3 {
 	display: none;
 	position: fixed;
 	bottom: -100px;
-	/* Start off-screen */
 	right: 10px;
 	width: 80%;
 	max-width: 300px;
@@ -68,7 +63,6 @@ body, html {
 
 #div3.show {
 	bottom: 20%;
-	/* Move on-screen */
 }
 
 #toggleButton {
@@ -84,7 +78,6 @@ body, html {
 @media (max-width: 425px) {
 	#div1 {
 		background-color: #ffcccb;
-		/* 쉽게 보이도록 빨간색 배경 */
 		padding: 10px;
 		margin-left: 0%;
 		margin-right: 0%;
@@ -103,6 +96,27 @@ body, html {
 	#div2 {
 		display: none;
 	}
-
-
 }
+
+.tooltip {
+	width: 200px;
+	padding: 10px;
+	background-color: white;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+  }
+  
+  .tooltip-image {
+	width: 100px;
+	height: 100px;
+  }
+  
+  #poll > div {
+	height: 20px;
+  }
+  
+  #poll > div > * {
+	display: inline-block;
+  }

@@ -1,6 +1,12 @@
 <%- include('partials/header', { title: 'Overview' }) %>
 
 <main>
+    <div id="stack_chart"></div>
 </main>
 
 <%- include('partials/footer') %>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="/js/eventData.js"></script>
+<script src="/js/pollData.js"></script>
+<script src="/js/bar-chart.js"></script>
+<script>drawStackedBarChart(10, 20, 30, 300, 10, '#stack_chart');</script>

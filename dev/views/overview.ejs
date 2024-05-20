@@ -1,13 +1,23 @@
 <%- include('partials/header', { title: 'Dashboard' }) %>
 
     <main>
-        <div id="div1" style=" height: 80px; text-align: center;">
-            Div 1 (Fixed)
+        <div id="bar_chart" style=" height: 80px; text-align: center;">
         </div>
         <figure class="highcharts-figure" style="display: flex; flex-direction: row;">
             <div id="container" style="height: 700px; flex: 5;"></div>
-            <div id="div2" style="height: 250px; flex: 1; background-color: lightgreen;">
-                Div 2 (Right side)
+            <div id="div2" style="height: 250px; flex: 1;">
+                <div id="subject">
+                    SUBJECT
+                    <div id="summary"></div>
+                </div>
+                <div id="poll">
+                    <div>+</div>
+                    <div id="positive_chart"></div>
+                    <div id="positive_status"></div>
+                    <div>-</div>
+                    <div id="negative_chart"></div>
+                    <div id="negative_status"></div>
+                </div>
             </div>
         </figure>
         <div id="div3" class="toast">
@@ -16,13 +26,15 @@
         </div>
     </main>
 
-
     <%- include('partials/footer') %>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="https://code.highcharts.com/highcharts.js"></script>
         <script src="https://code.highcharts.com/modules/heatmap.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="/js/pollData.js"></script>
+        <script src="/js/thumbnailData.js"></script>
         <script src="/js/heatmap/heatmap.js"></script>
+        <script src="/js/bar-chart.js"></script>
         <link rel="stylesheet" href="/css/heatmap.css">
-        <script src="/js/heatmap/responsive.js"></script>

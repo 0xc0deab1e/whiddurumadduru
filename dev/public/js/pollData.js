@@ -642,5 +642,5 @@ function getPresidentByDate(date) {
     { name: '박근혜', value: new Date("2013-2-25") },
     { name: '문재인', value: new Date("2017-5-10") },
     { name: '윤석열', value: new Date("2022-5-10") }];
-    return presidents.filter(x => x.value <= date).sort((x, y) => y.date - x.date)[0].name;
+    return presidents.filter(x => x.value <= date).sort((x, y) => y.value - x.value)[0].name;
 }
