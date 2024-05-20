@@ -70,7 +70,6 @@ Highcharts.chart('container', {
                     drawStackedBarChart(this.options.negative, 160, 10, '#negative_chart');
                     document.querySelector('#positive_status').innerHTML = `<span style="color: #e73921;">${this.options.positive[0]}</span> <span style="color: #5e83ba;">${this.options.positive[1]}</span> <span style="color: white;">${this.options.positive[2]}</span>`;
                     document.querySelector('#negative_status').innerHTML = `<span style="color: #e73921;">${this.options.negative[0]}</span> <span style="color: #5e83ba;">${this.options.negative[1]}</span> <span style="color: white;">${this.options.negative[2]}</span>`;
-                    console.log(this.options.date, getPresidentByDate(this.options.date));
                     drawChart(getPresidentByDate(this.options.date), true);
                 },
                 mouseOut: function() {
