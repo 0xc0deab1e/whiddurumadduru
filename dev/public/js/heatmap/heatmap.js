@@ -1,7 +1,5 @@
-// Substring template helper for the responsive labels
 Highcharts.Templating.helpers.substr = (s, from, length) => s.substr(from, length);
 
-// Create the chart
 Highcharts.chart('container', {
     chart: {
         type: 'heatmap',
@@ -36,9 +34,9 @@ Highcharts.chart('container', {
     colorAxis: {
         min: 0,
         stops: [
-            [0, '#FFFFFF'], // white
-            [0.5, '#87CEEB'], // sky blue
-            [1, '#0000FF'] // blue
+            [0, '#FFFFFF'],
+            [0.5, '#87CEEB'],
+            [1, '#0000FF']
         ]
     },
     legend: {
