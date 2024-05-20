@@ -153,7 +153,7 @@ window.onload =
 
 function setImages() {
     const thumbnailInner = document.getElementById("carousel");
-    thumbnailData.forEach((data, index) => {
+    thumbnailData.sort((a, b) => { return a.x + a.y * 1000 - (b.x + b.y * 1000) }).forEach((data, index) => {
         const item = document.createElement("img");
         item.src = `${data.value}`;
         item.setAttribute('onclick', `updateChart(${index})`);

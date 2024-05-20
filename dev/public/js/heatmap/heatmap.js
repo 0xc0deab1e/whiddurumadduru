@@ -74,6 +74,10 @@ Highcharts.chart('container', {
                 },
                 mouseOut: function() {
                     drawChart(null, true);
+                },
+                click: function() {
+                    const thumbnailsWidth = thumbnailData.sort((a, b) => b.x - a.x)[0].x + 1;
+                    window.location.href = `/details#${this.options.x + this.options.y * thumbnailsWidth}`;
                 }
             }
         },
