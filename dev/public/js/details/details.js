@@ -74,7 +74,7 @@ function updateChart(idx) {
     highlight();
     transition();
     updatePoll(idx);
-    loadData(getRepresentativesByDate(datas[index].date));
+    loadData(getRepresentativesByDate(thumbnailData[index].date));
 }
 
 function highlight() {
@@ -94,7 +94,7 @@ function highlight() {
 }
 
 function updatePoll(idx) {
-    const voteData = getVoteDataByDate(datas[idx].date);
+    const voteData = getVoteDataByDate(thumbnailData[idx].date);
     drawChart(voteData[2], false);
 }
 
@@ -131,11 +131,11 @@ function updateSelectedThumbnail(idx) {
 
 function updateDescription(idx) {
     var descriptionDiv = document.getElementById('description');
-    descriptionDiv.innerHTML = datas[idx].description;
+    descriptionDiv.innerHTML = thumbnailData[idx].description;
 }
 
 function updateVotes(idx) {
-    const voteData = getVoteDataByDate(datas[idx].date);
+    const voteData = getVoteDataByDate(thumbnailData[idx].date);
     var rateDiv = document.getElementById('percentage');
     rateDiv.innerHTML = `VOTE PERCENTAGE ${voteData[0]}%`;
     var countDiv = document.getElementById('count');
@@ -153,9 +153,9 @@ window.onload =
 
 function setImages() {
     const thumbnailInner = document.getElementById("carousel");
-    datas.forEach((data, index) => {
+    thumbnailData.forEach((data, index) => {
         const item = document.createElement("img");
-        item.src = `${data.image}`;
+        item.src = `${data.value}`;
         item.setAttribute('onclick', `updateChart(${index})`);
         thumbnailInner.appendChild(item);
     });
