@@ -1,4 +1,4 @@
-const data = [
+const pollData = [
     { date: new Date("1988-01-01"), values: [{ key: "노태우", value: 75 }] },
     { date: new Date("1988-04-01"), values: [{ key: "노태우", value: 73 }] },
     { date: new Date("1988-07-01"), values: [{ key: "노태우", value: 78 }] },
@@ -575,9 +575,9 @@ const data = [
 
 function getPollData(name) {
     if (!name)
-        return data;
+        return pollData;
     let result = [];
-    data.forEach((item) => {
+    pollData.forEach((item) => {
         let val = item.values.find(x => x.key === name);
         if (val) {
             result.push({ date: item.date, values: [val] })
@@ -587,26 +587,27 @@ function getPollData(name) {
 }
 
 function getVoteDataByDate(date) {
-    const VoteData = [{ date: new Date("1940-01-01"), value: [91.80, '180', '이승만']},
-    { date: new Date("1950-01-01"), value: [74.60, '5,238,769', '이승만'] },
-    { date: new Date("1955-01-01"), value: [70.00, '5,046,437', '이승만'] },
-    { date: new Date("1960-01-01"), value: [79.10, '208', '윤보선'] },
-    { date: new Date("1966-01-01"), value: [46.60, '4,702,640', '박정희'] },
-    { date: new Date("1970-01-01"), value: [51.40, '5,688,666', '박정희'] },
-    { date: new Date("1977-01-01"), value: [53.20, '6,342,828', '박정희'] },
-    { date: new Date("1980-01-01"), value: [99.90, '2,357', '박정희'] },
-    { date: new Date("1985-01-01"), value: [99.80, '2,577', '박정희'] },
-    { date: new Date("1990-01-01"), value: [96.30, '2,465', '최규하'] },
-    { date: new Date("1995-01-01"), value: [99.40, '2,524', '전두환'] },
-    { date: new Date("1999-01-01"), value: [90.10, '4,755', '전두환'] },
-    { date: new Date("2000-01-01"), value: [36.60, '8,282,738', '노태우'] },
-    { date: new Date("2002-01-01"), value: [42.00, '9,977,332', '김영삼'] },
-    { date: new Date("2004-01-01"), value: [40.30, '10,326,275', '김대중'] },
-    { date: new Date("2006-01-01"), value: [48.90, '12,014,277', '노무현'] },
-    { date: new Date("2008-01-01"), value: [48.70, '11,492,389', '이명박'] },
-    { date: new Date("2010-01-01"), value: [51.60, '15,773,128', '박근혜'] },
-    { date: new Date("2020-01-01"), value: [41.10, '13,423,800', '문재인'] },
-    { date: new Date("2024-01-01"), value: [48.60, '16,394,815', '윤석열'] }];
+    const VoteData = [
+    { date: new Date("1948-07-24"), value: [91.80, '180', '이승만']},
+    { date: new Date("1952-08-15"), value: [74.60, '5,238,769', '이승만'] },
+    { date: new Date("1956-08-15"), value: [70.00, '5,046,437', '이승만'] },
+    { date: new Date("1960-08-12"), value: [79.10, '208', '윤보선'] },
+    { date: new Date("1963-12-17"), value: [46.60, '4,702,640', '박정희'] },
+    { date: new Date("1967-07-01"), value: [51.40, '5,688,666', '박정희'] },
+    { date: new Date("1971-07-01"), value: [53.20, '6,342,828', '박정희'] },
+    { date: new Date("1972-12-27"), value: [99.90, '2,357', '박정희'] },
+    { date: new Date("1978-12-27"), value: [99.80, '2,577', '박정희'] },
+    { date: new Date("1979-12-06"), value: [96.30, '2,465', '최규하'] },
+    { date: new Date("1980-08-27"), value: [99.40, '2,524', '전두환'] },
+    { date: new Date("1981-02-25"), value: [90.10, '4,755', '전두환'] },
+    { date: new Date("1988-02-25"), value: [36.60, '8,282,738', '노태우'] },
+    { date: new Date("1993-02-25"), value: [42.00, '9,977,332', '김영삼'] },
+    { date: new Date("1998-02-25"), value: [40.30, '10,326,275', '김대중'] },
+    { date: new Date("2003-02-25"), value: [48.90, '12,014,277', '노무현'] },
+    { date: new Date("2008-02-25"), value: [48.70, '11,492,389', '이명박'] },
+    { date: new Date("2013-02-25"), value: [51.60, '15,773,128', '박근혜'] },
+    { date: new Date("2017-05-10"), value: [41.10, '13,423,800', '문재인'] },
+    { date: new Date("2022-05-10"), value: [48.60, '16,394,815', '윤석열'] }];
     return VoteData.filter(x => x.date <= date).sort((x, y) => y.date - x.date)[0].value;
 }
 
