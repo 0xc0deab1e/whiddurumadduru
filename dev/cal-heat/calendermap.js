@@ -1,6 +1,6 @@
 var width = 900,
     height = 105,
-    cellSize = 12; // cell size
+    cellSize = 12; 
     week_days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat']
     month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
 	

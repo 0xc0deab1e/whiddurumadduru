@@ -94,17 +94,17 @@ var svg = d3.select(appendTo)
 }
 
 function drawSummaryChart(red, blue, white) {
-    // 데이터 정의
+    
 const data = [
     { party: "Conservative", count: red },
     { party: "Progressive", count: blue },
     { party: "Independent", count: white }
   ];
   
-  // 전체 비율 합 계산
+  
   const totalPercentage = data.reduce((acc, d) => acc + d.count, 0);
   
-  // SVG 요소 생성
+  
   const svgWidth = 100;
   const svgHeight = 100;
   const barPadding = 5;
@@ -114,28 +114,28 @@ const data = [
     .attr("width", svgWidth)
     .attr("height", svgHeight);
   
-  // 가로막대 그리기
+  
   svg.selectAll("rect")
     .data(data)
     .enter()
     .append("rect")
     .attr("x", 0)
-    .attr("y", (d, i) => i * (svgHeight / data.length) + barPadding) // 막대 간 간격 고려
-    .attr("width", d => (d.count / totalPercentage) * svgWidth) // 비율에 따라 너비 조정
-    .attr("height", svgHeight / data.length - 2 * barPadding) // 막대 두께 조정
+    .attr("y", (d, i) => i * (svgHeight / data.length) + barPadding) 
+    .attr("width", d => (d.count / totalPercentage) * svgWidth) 
+    .attr("height", svgHeight / data.length - 2 * barPadding) 
     .attr("fill", d => {
       if (d.party === "Conservative") return "#e73921";
       else if (d.party === "Progressive") return "#5e83ba";
       else return "white";
     });
   
-  // 텍스트 레이블 추가
+  
   svg.selectAll("text")
     .data(data)
     .enter()
     .append("text")
     .text(d => `${d.party} (${d.count})`)
-    .attr("x", 5) // 막대 시작 부분에 텍스트 표시
+    .attr("x", 5) 
     .attr("y", (d, i) => i * (svgHeight / data.length) + (svgHeight / data.length) / 2)
     .attr("text-anchor", "start")
     .attr("fill", "black")
