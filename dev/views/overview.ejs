@@ -1,10 +1,19 @@
 <%- include('partials/header', { title: 'Dashboard' }) %>
 
-    <main>
-        <div id="bar_chart" style=" height: 80px; text-align: center;">
+    <main id="overview">
+        <div id="bar_chart" style=" height: 200px; text-align: center;">
         </div>
         <figure class="highcharts-figure" style="display: flex; flex-direction: row;">
             <div id="container" style="height: 700px; flex: 5;"></div>
+            <div id="mobileContainer">
+                <div id="yearContainer"></div>
+                <div id="thumbnailContainer">
+                    <button id="carousel-control-prev">◀</button>
+                    <div id="selectedThumbnail"></div>
+                    <button id="carousel-control-next">▶</button>
+                </div>
+                <div id="description"></div>
+            </div>
             <div id="div2" style="height: 250px; flex: 1;">
                 <div id="subject">
                     SUBJECT
@@ -20,9 +29,10 @@
                 </div>
             </div>
         </figure>
-        <div id="div3" class="toast">
-            <div id="toastContent">Div 3 (Toast Pop-up)</div>
-            <button id="toggleButton">▲</button>
+        <div id="div3" class="toast" onclick="toggleDiv3()">
+            <div id="toastContent">
+                <div id="Parliament_container"></div>
+            </div>
         </div>
     </main>
 
@@ -33,8 +43,10 @@
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src="https://code.highcharts.com/modules/item-series.js"></script>
         <script src="/js/pollData.js"></script>
         <script src="/js/thumbnailData.js"></script>
-        <script src="/js/heatmap/heatmap.js"></script>
         <script src="/js/bar-chart.js"></script>
+        <script src="/js/heatmap/heatmap.js"></script>
+        <script src="/js/details/details.js"></script>
         <link rel="stylesheet" href="/css/heatmap.css">

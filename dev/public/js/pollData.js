@@ -573,9 +573,13 @@ const pollData = [
     { date: new Date("2021-02-22"), values: [{ key: "문재인", value: 100 }] }
 ];
 
-function getPollData(name) {
-    if (!name)
+function getPollDataByName(name) {
+    if (!name) {
         return pollData;
+    }
+    else if (parseInt(name)) {
+        return getPollDataByDate(name);
+    }
     let result = [];
     pollData.forEach((item) => {
         let val = item.values.find(x => x.key === name);
@@ -584,6 +588,10 @@ function getPollData(name) {
         }
     })
     return result;
+}
+
+function getPollDataByDate(year) {
+    return pollData.filter(x => x.date.getFullYear() == year);
 }
 
 function getVoteDataByDate(date) {

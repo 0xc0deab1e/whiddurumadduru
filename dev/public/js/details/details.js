@@ -50,20 +50,20 @@ const chart = Highcharts.chart('Parliament_container', {
     }
 });
 
-const prevButton = document.querySelector('.carousel-control-prev');
-const nextButton = document.querySelector('.carousel-control-next');
+const prevButton = document.querySelector('#carousel-control-prev');
+const nextButton = document.querySelector('#carousel-control-next');
 const carousel = document.querySelector('#carousel');
 
 let index = 0;
 
-prevButton.addEventListener('click', () => {
+prevButton?.addEventListener('click', () => {
     if (index === 0) return;
     index -= 1;
     updateChart(index);
 });
 
-nextButton.addEventListener('click', () => {
-    if (index === document.querySelectorAll('#carousel img').length - 1) return;
+nextButton?.addEventListener('click', () => {
+    if (index === thumbnailData.length - 1) return;
     index += 1;
     updateChart(index);
 });
@@ -72,6 +72,8 @@ function updateChart(idx) {
     index = parseInt(idx);
     window.location.hash = '#' + index;
     highlight();
+    updateSelectedThumbnail(idx);
+    updateDescription(idx);
     transition();
     updatePoll(idx);
     loadData(getRepresentativesByDate(thumbnailData[index].date));
@@ -83,8 +85,7 @@ function highlight() {
         if (i == index) {
             thumbnail.classList.add('thumbnail-highlight');
             thumbnail.classList.remove('thumbnail-dim');
-            updateSelectedThumbnail(i);
-            updateDescription(i);
+
             updateVotes(i);
         } else {
             thumbnail.classList.remove('thumbnail-highlight');
@@ -94,19 +95,19 @@ function highlight() {
 }
 
 function updatePoll(idx) {
-    const voteData = getVoteDataByDate(thumbnailData[idx].date);
-    drawChart(voteData[2], false);
+    drawChart(window.innerWidth < 768 ? thumbnailData[idx].date.getFullYear() : getVoteDataByDate(thumbnailData[idx].date)[2], false);
 }
 
 function transition() {
     const carousel = document.querySelector('#carousel');
     const selectedThumbnail = document.querySelector(`#thumbnails > div > div > img:nth-child(${index + 1})`);
-    const selectedThumbnailOffset = selectedThumbnail.offsetLeft;
-    const selectedThumbnailWidth = selectedThumbnail.offsetWidth;
-    const containerWidth = carousel.offsetWidth;
+    const selectedThumbnailOffset = selectedThumbnail?.offsetLeft;
+    const selectedThumbnailWidth = selectedThumbnail?.offsetWidth;
+    const containerWidth = carousel?.offsetWidth;
 
     let translateX = -(selectedThumbnailOffset - (containerWidth - selectedThumbnailWidth) / 2);
-    carousel.style.transform = `translate3d(${translateX}px, 0, 0)`;
+    if(carousel)
+        carousel.style.transform = `translate3d(${translateX}px, 0, 0)`;
 }
 
 function loadData(Representatives) {
@@ -123,10 +124,13 @@ function loadData(Representatives) {
 }
 
 function updateSelectedThumbnail(idx) {
-    const thumbnails = document.querySelectorAll('#carousel img');
     var selectedThumbnailDiv = document.getElementById('selectedThumbnail');
-    var selectedThumbnailSrc = thumbnails[idx].src;
+    var selectedThumbnailSrc = thumbnailData[idx].value;
     selectedThumbnailDiv.innerHTML = '<img src="' + selectedThumbnailSrc + '" alt="Selected Thumbnail">';
+    const year = document.querySelector('#yearContainer');
+    const date = thumbnailData[idx].date;
+    if (year)
+        year.innerHTML = `${date.getFullYear()}/${('0' + (date.getMonth() + 1)).slice(-2)}/${('0' + date.getDate()).slice(-2)}`;
 }
 
 function updateDescription(idx) {
@@ -157,6 +161,6 @@ function setImages() {
         const item = document.createElement("img");
         item.src = `${data.value}`;
         item.setAttribute('onclick', `updateChart(${index})`);
-        thumbnailInner.appendChild(item);
+        thumbnailInner?.appendChild(item);
     });
 }

@@ -109,5 +109,16 @@ window.onload = function() {
     const blue = thumbnailData.filter(x => x.color === '#5e83ba').length;
     const white = thumbnailData.filter(x => x.color === 'white').length;
     drawSummaryChart(red, blue, white);
-    drawChart(null, true);
+    if (window.innerWidth < 768) {
+        drawChart(1989, false)
+    }
+    else {
+        drawChart(null, true);
+    }
+}
+
+function toggleDiv3() {
+    const div3 = document.querySelector('.toast');
+    div3.classList.toggle('show');
+    div3.style.transition = 'bottom 0.5s ease-in-out';
 }
