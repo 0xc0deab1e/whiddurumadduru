@@ -186,9 +186,9 @@ chartGroup.selectAll(".event")
   .enter().append("line")
   .attr("class", "event")
   .attr("x1", d => x(d.date))
-  .attr("y1", 5)
+  .attr("y1", 0)
   .attr("x2", d => x(d.date))
-  .attr("y2", height - 5)
+  .attr("y2", rectY + rectHeight)
   .attr("stroke", "transparent")
   .attr("stroke-width", 3)
   .attr("opacity", 0.7)
@@ -201,16 +201,19 @@ function showEventData(event, d) {
   d3.select("body").append("div")
     .attr("class", "tooltip")
     .attr("font-size", "12px")
-    .style("left", mouseX + "px")
-    .style("top", (mouseY - 175) + "px")
+    .style("left", (mouseX - 10) + "px")
+    .style("top", (mouseY - 100) + "px")
     .style("position", "absolute")
     .style("color", "black")
     .style("padding", "5px")
     .style("border-radius", "5px")
     .style("pointer-events", "none")
+    .style("background-color", "#D6D6D6")
     .text(`${d.date.getFullYear()}-${d.date.getMonth() + 1}-${d.date.getDate()}: ${d.title}`);
+    this.setAttribute("stroke", "black");
 }
 
 function hideEventData() {
   d3.selectAll(".tooltip").remove();
+  this.setAttribute("stroke", "transparent");
 }
