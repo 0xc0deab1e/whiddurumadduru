@@ -621,7 +621,7 @@ function getVoteDataByDate(date) {
 
 function getRepresentativesByDate(date) {
     const representatives = [
-        { date: new Date("1940-01-01"), value: [80, 70, 20] },
+        { date: new Date("1940-01-01"), value: [80, 70, 20, 20] },
         { date: new Date("1950-01-01"), value: [70, 70, 100] },
         { date: new Date("1960-01-01"), value: [60, 70, 20] },
         { date: new Date("1970-01-01"), value: [50, 10, 20] },

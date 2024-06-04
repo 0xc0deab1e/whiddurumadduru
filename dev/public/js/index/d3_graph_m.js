@@ -1,5 +1,5 @@
 const svgWidth = document.documentElement.clientWidth;
-const svgHeight = document.documentElement.clientHeight;
+const svgHeight = document.documentElement.clientHeight + 100;
 const width = svgWidth;
 const height = svgHeight;
 

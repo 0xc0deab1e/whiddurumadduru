@@ -1,26 +1,42 @@
-html, body {
+/**
+ * Minified by jsDelivr using clean-css v5.3.2.
+ * Original file: /gh/orioncactus/pretendard@1.3.9/dist/web/variable/pretendardvariable.css
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url("../../../packages/pretendard/dist/web/variable/woff2/PretendardVariable.woff2")
+    format("woff2-variations");
+}
+/*# sourceMappingURL=/sm/cb46c7e49fc38cbd97a389d4dc69706f7471d0646edc67e9dc7defe084c0b8bf.map */
+
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  background-color: #D6D6D6;
+  background-color: #d6d6d6;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: p, bold;
   margin: 0;
   padding: 0;
 }
 
 header {
-  background-color: #333;
+  background-color: #000;
   color: #fff;
-  padding: 5px;
+  padding: 10px;
   position: absolute;
-  top: 15px;
-  left: 10px;
-  width: 18%;
-  height: auto;
+  top: 40px;
+  left: 50px;
+  height: 65px;
   z-index: 10;
   font-size: 1em;
   text-align: left;
@@ -32,7 +48,7 @@ header {
   align-items: center;
 }
 
-#details_main>div {
+#details_main > div {
   width: 200px;
   background-color: #f0f0f0;
   margin: 10px;
@@ -42,17 +58,17 @@ header {
   margin: 0 5px;
 }
 
-#Parliament>.highcharts-figure {
+#Parliament > .highcharts-figure {
   width: 100%;
   height: 100%;
 }
 
-#Parliament>.highcharts-figure>#Parliament_container {
+#Parliament > .highcharts-figure > #Parliament_container {
   width: 100%;
   height: 100%;
 }
 
-#details_main>#selectedThumbnail {
+#details_main > #selectedThumbnail {
   flex-grow: 3;
 }
 
@@ -61,7 +77,6 @@ header {
   padding: 0;
   width: 100%;
   height: 100%;
-
 }
 
 .highcharts-data-table table {
@@ -71,7 +86,7 @@ header {
 }
 
 .highcharts-data-table table {
-  font-family: Verdana, sans-serif;
+  font-family: Pretendard Variable, sans-serif;
   border-collapse: collapse;
   border: 1px solid #ebebeb;
   margin: 10px auto;
@@ -123,13 +138,13 @@ input[type="number"] {
   overflow: hidden;
 }
 
-.carousel-wrapper>#carousel {
+.carousel-wrapper > #carousel {
   display: flex;
   transform: translate3d(0, 0, 0);
   transition: transform 0.2s;
 }
 
-.carousel-wrapper>#carousel>img {
+.carousel-wrapper > #carousel > img {
   width: auto;
   height: 100px;
 }
@@ -164,25 +179,29 @@ input[type="number"] {
   overflow: scroll;
 }
 
-header h1, header h2, header h3 {
-  margin: 5px 0;
+header h1,
+header h2,
+header h3 {
+  margin: -1px 0;
 }
 
 header h1 {
-  font-size: 1em;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 header h2 {
-  font-size: 0.8em;
+  font-size: 15px;
 }
 
 header h3 {
-  font-size: 0.6em;
+  font-size: 15px;
+  font-family: Pretendard Variable;
+  font-weight: 200;
 }
 
 header nav {
   margin-top: 5px;
-  
 }
 
 header nav ul {
@@ -210,7 +229,6 @@ header nav ul li a {
 #graph-container {
   width: 100%;
   height: 100%;
-  margin-top: 20%;
   padding: 50px;
   box-sizing: border-box;
 }
@@ -218,7 +236,7 @@ header nav ul li a {
 svg {
   width: 100%;
   height: 100%;
-  background-color: #D6D6D6;
+  background-color: #d6d6d6;
 }
 
 @media (max-width: 768px) {
@@ -255,12 +273,18 @@ svg {
   svg {
     width: 100%;
     height: 100%;
-    background-color: #D6D6D6;
+    background-color: #d6d6d6;
   }
+}
 
+main {
+  margin-top: 200px;
 }
 
 @media (max-width: 480px) {
+  main {
+    margin-top: 20px;
+  }
 
   header {
     background-color: #333;
@@ -295,16 +319,11 @@ svg {
   svg {
     width: 100%;
     height: 100%;
-    background-color: #D6D6D6;
+    background-color: #d6d6d6;
   }
-
 }
 
 #bar_chart svg {
   width: 100%;
   height: 100%;
-}
-
-main {
-  margin-top: 200px;
 }
