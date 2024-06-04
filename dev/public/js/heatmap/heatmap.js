@@ -111,7 +111,9 @@ window.onload = function() {
     const blue = thumbnailData.filter(x => x.color === '#5e83ba').length;
     const white = thumbnailData.filter(x => x.color === 'white').length;
     drawSummaryChart(red, blue, white);
-    drawChart(null, window.isPositive)
+    drawChart(null, window.isPositive);
+    const ul = document.querySelector('ul.next');
+    ul.innerHTML += `<li><a href="/">Home</a></li>`;
 }
 
 function toggleDiv3() {
