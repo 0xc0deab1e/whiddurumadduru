@@ -20,7 +20,7 @@ function drawChart(name, isPositive) {
     },
     tooltip: {
       headerFormat: '<b>{series.name}</b><br>',
-      pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+      pointFormat: `재임 {point.x}주차: ${isPositive ? '긍정' : '부정'} {point.y:.2f} %`
     },
 
     plotOptions: {

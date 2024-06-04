@@ -239,3 +239,8 @@ function showEventData(event, d) {
 function hideEventData() {
     d3.selectAll(".tooltip").remove();
 }
+
+window.onload = function() {
+    const ul = document.querySelector('ul.next');
+    ul.innerHTML += `<li><a href="/overview">Overview</a></li>`;
+  }
