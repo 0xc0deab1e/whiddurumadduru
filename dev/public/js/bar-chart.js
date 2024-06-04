@@ -1,60 +1,55 @@
-function drawChart(name, fullDuration) {
-  const ismobile = parseInt(name);
-  const pollData = getPollDataByName(name);
-  const startDate = fullDuration ? new Date("1940-01-01") : d3.min(pollData, d => d.date);
-  const endDate = fullDuration ? new Date("2027-01-01") : d3.max(pollData, d => d.date);
-  const width = document.getElementById('bar_chart').clientWidth;
-  const height = document.getElementById('bar_chart').clientHeight * 0.6;
+function drawChart(name, isPositive) {
 
-  const svg = d3.select("#bar_chart")
-    .html("")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-    .append("g")
+  Highcharts.chart('bar_chart', {
+    chart: {
+      type: 'line'
+    },
+    title: {
+      text: '',
+      align: 'left'
+    },
+    subtitle: {
+      text: '',
+      align: 'left'
+    },
+    yAxis: {
+      title: {
+        text: ''
+      },
+      min: 0
+    },
+    tooltip: {
+      headerFormat: '<b>{series.name}</b><br>',
+      pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+    },
 
-  const x = d3.scaleTime()
-    .domain([startDate, endDate])
-    .range([0, width]);
+    plotOptions: {
+      series: {
+        marker: {
+          enabled: false,
+        }
+      }
+    },
 
-  const y = d3.scaleLinear()
-    .domain([0, 100])
-    .nice()
-    .range([height, 0]);
+    // Define the data points. All series have a year of 1970/71 in order
+    // to be compared on the same x axis. Note that in JavaScript, months start
+    // at 0 for January, 1 for February etc.
+    series: getSeries(name, isPositive),
+  });
+}
 
-  const keys = ["노태우", "김영삼", "김대중", "노무현", "이명박", "박근혜", "문재인"];
-  const stack = d3.stack()
-    .keys(keys)
-    .value((d, key) => {
-      const valueObj = d.values.find(v => v.key === key);
-      return valueObj ? valueObj.value : 0;
-    });
+function getSeries(name, isPositive) {
+  const result = pollData.map(x => { return { name: x.name, data: x.data.map(y => y.filter((x, i) => !i || i == (!isPositive) + 1)) }; })
+  if (name) {
+    return result.filter(x => x.name == name);
+  }
+  return result;
+}
 
-    const fullDataCount = 572;
-  const series = stack(pollData);
-
-  svg.append("g")
-    .attr("class", "x-axis")
-    .attr("transform", `translate(0,${height})`)
-    .call(d3.axisBottom(x))
-
-  svg.append("g")
-    .attr("class", "y-axis")
-
-    const rectWidth = width / (ismobile ? series.length * 20 : fullDataCount) * 0.8;
-
-  svg.selectAll(".serie")
-    .data(series)
-    .enter().append("g")
-    .attr("class", "serie")
-    .attr("fill", "black")
-    .selectAll("rect")
-    .data(d => d)
-    .enter().append("rect")
-    .attr("x", d => x(d.data.date) - rectWidth / 2)
-    .attr("y", d => y(d[1]))
-    .attr("height", d => (y(d[0]) - y(d[1])))
-    .attr("width", rectWidth);
+function togglePositive() {
+  window.isPositive = !window.isPositive;
+  document.querySelector("#overview > div:nth-child(1) > button").innerHTML = isPositive ? '긍정' : '부정';
+  drawChart(null, isPositive);
 }
 
 function drawStackedBarChart(values, width, height, appendTo) {

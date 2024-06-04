@@ -1,6 +1,9 @@
 <%- include('partials/header', { title: 'Dashboard' }) %>
 
     <main id="overview">
+        <div style="height: 25px;">
+            <button onclick="togglePositive();" style="position: absolute;right: 120px;">긍정</button>
+        </div>
         <div id="bar_chart" style=" height: 200px; text-align: center;">
         </div>
         <figure class="highcharts-figure" style="display: flex; flex-direction: row;">
@@ -48,5 +51,4 @@
         <script src="/js/thumbnailData.js"></script>
         <script src="/js/bar-chart.js"></script>
         <script src="/js/heatmap/heatmap.js"></script>
-        <script src="/js/details/details.js"></script>
         <link rel="stylesheet" href="/css/heatmap.css">

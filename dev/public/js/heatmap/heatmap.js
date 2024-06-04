@@ -1,3 +1,5 @@
+window.isPositive = true;
+
 Highcharts.Templating.helpers.substr = (s, from, length) => s.substr(from, length);
 
 Highcharts.chart('container', {
@@ -70,10 +72,10 @@ Highcharts.chart('container', {
                     drawStackedBarChart(this.options.negative, 160, 10, '#negative_chart');
                     document.querySelector('#positive_status').innerHTML = `<span style="color: #e73921;">${this.options.positive[0]}</span> <span style="color: #5e83ba;">${this.options.positive[1]}</span> <span style="color: white;">${this.options.positive[2]}</span>`;
                     document.querySelector('#negative_status').innerHTML = `<span style="color: #e73921;">${this.options.negative[0]}</span> <span style="color: #5e83ba;">${this.options.negative[1]}</span> <span style="color: white;">${this.options.negative[2]}</span>`;
-                    drawChart(getPresidentByDate(this.options.date), true);
+
                 },
                 mouseOut: function() {
-                    drawChart(null, true);
+
                 },
                 click: function() {
                     const thumbnailsWidth = thumbnailData.sort((a, b) => b.x - a.x)[0].x + 1;
@@ -109,12 +111,7 @@ window.onload = function() {
     const blue = thumbnailData.filter(x => x.color === '#5e83ba').length;
     const white = thumbnailData.filter(x => x.color === 'white').length;
     drawSummaryChart(red, blue, white);
-    if (window.innerWidth < 768) {
-        drawChart(1989, false)
-    }
-    else {
-        drawChart(null, true);
-    }
+    drawChart(null, window.isPositive)
 }
 
 function toggleDiv3() {

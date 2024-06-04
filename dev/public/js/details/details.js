@@ -95,7 +95,7 @@ function highlight() {
 }
 
 function updatePoll(idx) {
-    drawChart(window.innerWidth < 768 ? thumbnailData[idx].date.getFullYear() : getVoteDataByDate(thumbnailData[idx].date)[2], false);
+    drawChart(getVoteDataByDate(thumbnailData[idx].date)[2], window.isPositive);
 }
 
 function transition() {
