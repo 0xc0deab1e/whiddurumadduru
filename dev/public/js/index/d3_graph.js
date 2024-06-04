@@ -268,3 +268,8 @@ function hideEventData() {
   d3.selectAll(".tooltip").remove();
   this.setAttribute("stroke", "transparent");
 }
+
+window.onload = function() {
+  const ul = document.querySelector('ul.next');
+  ul.innerHTML += `<li><a href="/overview">Overview</a></li>`;
+}

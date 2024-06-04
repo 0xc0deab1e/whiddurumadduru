@@ -153,6 +153,9 @@ window.onload =
         setTimeout(() => {
             updateChart(index);
         }, 20);
+
+        const ul = document.querySelector('ul.next');
+        ul.innerHTML += `<li><a href="/">Home</a></li>`;
     };
 
 function setImages() {
