@@ -1,46 +1,39 @@
 <%- include('partials/header', { title: 'Overview' }) %>
-    <main>
-        <div id="thumbnails" class="carousel-container">
-            <div class="carousel-wrapper">
-                <div id="carousel">
-                </div>
-                <button class="carousel-control-prev" type="button">prev</button>
-                <button class="carousel-control-next" type="button">next</button>
-            </div>
-        </div>
+<main>
+  <div class="design-header"></div>
+  <div id="thumbnails" class="carousel-container">
+    <div class="carousel-wrapper">
+      <div id="carousel"></div>
+      <button class="carousel-control-prev" type="button">prev</button>
+      <button class="carousel-control-next" type="button">next</button>
+    </div>
+  </div>
 
+  <div id="details_main">
+    <div id="Parliament" style="flex: 500px 0 0; width: inherit">
+      <figure class="highcharts-figure">
+        <div id="Parliament_container"></div>
+      </figure>
+      <div id="votes">
+        <div id="percentage"></div>
+        <div id="count"></div>
+      </div>
+      <div id="bar_chart" style="width: 100%; height: 50px"></div>
+    </div>
+    <div id="selectedThumbnail"></div>
+    <div id="description"></div>
+  </div>
+</main>
 
-        <div id="details_main">
-            <div id="Parliament">
-                <figure class="highcharts-figure">
-                    <div id="Parliament_container"></div>
-                </figure>
-                <div id="votes">
-                    <div id="percentage">
-                    </div>
-                    <div id="count">
-                    </div>
-                </div>
-                <div id="bar_chart" style="width: 100%; height: 50px;">
-                </div>
-            </div>
-            <div id="selectedThumbnail">
-            </div>
-            <div id="description">
-            </div>
-        </div>
+<%- include('partials/footer') %>
 
-    </main>
-
-    <%- include('partials/footer') %>
-
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/item-series.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script src="https://code.highcharts.com/modules/export-data.js"></script>
-        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-        <script src="/js/thumbnailData.js"></script>
-        <script src="/js/pollData.js"></script>
-        <script src="/js/bar-chart.js"></script>
-        <script src="/js/details/details.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/item-series.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="/js/thumbnailData.js"></script>
+<script src="/js/pollData.js"></script>
+<script src="/js/bar-chart.js"></script>
+<script src="/js/details/details.js"></script>

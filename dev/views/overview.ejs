@@ -1,55 +1,60 @@
 <%- include('partials/header', { title: 'Dashboard' }) %>
 
-    <main id="overview">
-        <div style="height: 25px;">
-            <button class="positiveButton" onclick="togglePositive();" style="position: absolute;right: 120px;">긍정</button>
-        </div>
-        <div id="bar_chart" style=" height: 200px; text-align: center;">
-        </div>
-        <figure class="highcharts-figure" style="display: flex; flex-direction: row;">
-            <div id="container" style="height: 700px; flex: 5;"></div>
-            <div id="mobileContainer">
-                <div id="yearContainer"></div>
-                <div id="thumbnailContainer">
-                    <button id="carousel-control-prev">◀</button>
-                    <div id="selectedThumbnail"></div>
-                    <button id="carousel-control-next">▶</button>
-                </div>
-                <div id="description"></div>
-            </div>
-            <div id="div2" style="height: 250px; flex: 1;">
-                <div id="subject">
-                    SUBJECT
-                    <div id="summary"></div>
-                </div>
-                <div id="poll">
-                    <div>+</div>
-                    <div id="positive_chart"></div>
-                    <div id="positive_status"></div>
-                    <div>-</div>
-                    <div id="negative_chart"></div>
-                    <div id="negative_status"></div>
-                </div>
-            </div>
-        </figure>
-        <div id="div3" class="toast" onclick="toggleDiv3()">
-            <div id="toastContent">
-                <div id="Parliament_container"></div>
-            </div>
-        </div>
-    </main>
+<main id="overview">
+  <div style="height: 25px">
+    <button
+      class="positiveButton"
+      onclick="togglePositive();"
+      style="position: absolute; right: 120px"
+    >
+      긍정
+    </button>
+  </div>
+  <div id="bar_chart"></div>
+  <figure class="highcharts-figure" style="display: flex; flex-direction: row">
+    <div id="container" style="height: 700px; flex: 5"></div>
+    <div id="mobileContainer">
+      <div id="yearContainer"></div>
+      <div id="thumbnailContainer">
+        <button id="carousel-control-prev">◀</button>
+        <div id="selectedThumbnail"></div>
+        <button id="carousel-control-next">▶</button>
+      </div>
+      <div id="description"></div>
+    </div>
+    <div id="div2" style="height: 250px; flex: 1">
+      <div id="subject">
+        SUBJECT
+        <div id="summary"></div>
+      </div>
+      <div id="poll">
+        <div>+</div>
+        <div id="positive_chart"></div>
+        <div id="positive_status"></div>
+        <div>-</div>
+        <div id="negative_chart"></div>
+        <div id="negative_status"></div>
+      </div>
+    </div>
+  </figure>
+  <div id="div3" class="toast" onclick="toggleDiv3()">
+    <div id="toastContent">
+      <div id="Parliament_container"></div>
+    </div>
+  </div>
+</main>
 
-    <%- include('partials/footer') %>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/heatmap.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script src="https://code.highcharts.com/modules/export-data.js"></script>
-        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-        <script src="https://code.highcharts.com/modules/item-series.js"></script>
-        <script src="/js/pollData.js"></script>
-        <script src="/js/thumbnailData.js"></script>
-        <script src="/js/bar-chart.js"></script>
-        <script src="/js/heatmap/heatmap.js"></script>
-        <script src="/js/details/details.js"></script>
-        <link rel="stylesheet" href="/css/heatmap.css">
+<%- include('partials/footer') %>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/modules/item-series.js"></script>
+<script src="/js/pollData.js"></script>
+<script src="/js/thumbnailData.js"></script>
+<script src="/js/bar-chart.js"></script>
+<script src="/js/heatmap/heatmap.js"></script>
+<script src="/js/details/details.js"></script>
+<link rel="stylesheet" href="/css/heatmap.css" />

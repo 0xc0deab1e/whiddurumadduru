@@ -238,30 +238,35 @@ chartGroup
 
 function showEventData(event, d) {
   const mouseX = event.pageX;
-  const tooltip = d3.select("body")
+  const tooltip = d3
+    .select("body")
     .append("div")
     .attr("class", "tooltip")
-    .attr("font-size", "12px")
-    .style("top", 220 + "px")
+    .style("font-size", "18px")//Home 툴팁 글자크기
+    .style("top", 340 + "px")//툴팁 위치(높이)
     .style("position", "absolute")
     .style("color", "black")
     .style("padding", "5px")
     .style("border-radius", "5px")
     .style("pointer-events", "none")
-    .text(
-      `${d.date.getFullYear()}/${d.date.getMonth() + 1}/${d.date.getDate()}\n${d.title}`
+    .html(
+      `<span style="font-weight:bold;">${d.date.getFullYear()}/${
+        d.date.getMonth() + 1
+      }/${d.date.getDate()}</span>
+      <br/>${d.title}`
     );
-    this.setAttribute("stroke", "black");
 
-    let tooltipX = mouseX + 10;
-    const tooltipNode = tooltip.node();
-    const tooltipRect = tooltipNode.getBoundingClientRect();
+  this.setAttribute("stroke", "black");
 
-    const windowWidth = window.innerWidth;
-    if (tooltipX + tooltipRect.width > windowWidth) {
-      tooltipX = windowWidth - tooltipRect.width - 10;
-    }
-    tooltip.style("left", tooltipX + "px")
+  let tooltipX = mouseX + 10;
+  const tooltipNode = tooltip.node();
+  const tooltipRect = tooltipNode.getBoundingClientRect();
+
+  const windowWidth = window.innerWidth;
+  if (tooltipX + tooltipRect.width > windowWidth) {
+    tooltipX = windowWidth - tooltipRect.width - 10;
+  }
+  tooltip.style("left", tooltipX + "px");
 }
 
 function hideEventData() {
@@ -269,7 +274,7 @@ function hideEventData() {
   this.setAttribute("stroke", "transparent");
 }
 
-window.onload = function() {
-  const ul = document.querySelector('ul.next');
-  ul.innerHTML += `<li><a href="/overview">Overview</a></li>`;
-}
+window.onload = function () {
+  const ul = document.querySelector("ul.next");
+  ul.innerHTML += `<li><a href="/overview">OVERVIEW</a></li>`;
+};
