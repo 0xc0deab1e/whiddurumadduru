@@ -190,7 +190,7 @@ input[type="number"] {
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
-  transform: translateY(-300%);
+  transform: translateY(-170%);
   z-index: 1;
 }
 

@@ -3,14 +3,27 @@
   body {
     background-color: #fff;
   }
+  button {
+    background-color: black; /* 배경색 검은색 */
+    color: white; /* 텍스트 색상 흰색 */
+    padding: 10px 20px; /* 여백 추가 */
+    border-color: #fff;
+    font-size: 16px; /* 폰트 크기 설정 */
+    cursor: pointer; /* 마우스 커서 변경 */
+  }
+
+  .red {
+    color: red;
+    font-weight: bold;
+  }
 </style>
 <main>
   <div class="design-header"></div>
   <div id="thumbnails" class="carousel-container">
     <div class="carousel-wrapper">
       <div id="carousel"></div>
-      <button class="carousel-control-prev" type="button">prev</button>
-      <button class="carousel-control-next" type="button">next</button>
+      <button class="carousel-control-prev" type="button"><</button>
+      <button class="carousel-control-next" type="button">></button>
     </div>
   </div>
 
@@ -20,12 +33,18 @@
         <div id="Parliament_container"></div>
       </figure>
       <div id="votes" style="left: 50px;position: relative;">
-        <div id="percentage"></div>
-        <div id="count"></div>
+        <div style="display: flex;">
+          <div id="percentage_num"><b>VOTE PERCENTAGE</b></div>
+          <div class="red" id="percentage" style="margin-left: 13px;"></div>
+        </div>
+        <div style="display: flex;">
+          <div id="count_num"><b>VOTE COUNT</b></div>
+          <div class="red" id="count" style="margin-left: 60px;"></div>
+        </div>
       </div>
       <div id="bar_chart" style="width: 100%; height: 200px"></div>
     </div>
-    <div id="selectedThumbnail" style="width: 43%;"></div>
+    <div id="selectedThumbnail" style="width: 43%;display: grid;justify-content: center;"></div>
     <div id="description" style="width: 30%;"></div>
   </div>
 </main>
