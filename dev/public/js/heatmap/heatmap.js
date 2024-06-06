@@ -1,5 +1,4 @@
 window.isPositive = true;
-window.index = -1;
 
 function isMobile() {
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -23,6 +22,7 @@ function isMobile() {
 }
 
 if (!isMobile()) {
+  window.index = -1;
   document.querySelector("#imgBox").innerHTML = `
   <img class="tooltipImage" src="/img/이승만 01.png" , color: "#e73921" , img_id="0">
   <img class="tooltipImage" src="/img/이승만 당선 (1952).png" , color: "#e73921" , img_id="1">

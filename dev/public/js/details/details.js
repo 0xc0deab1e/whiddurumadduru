@@ -61,8 +61,8 @@ const chart = Highcharts.chart("Parliament_container", {
   },
 });
 
-const prevButton = document.querySelector(".carousel-control-prev");
-const nextButton = document.querySelector(".carousel-control-next");
+const prevButton = document.querySelector("#carousel-control-prev");
+const nextButton = document.querySelector("#carousel-control-next");
 const carousel = document.querySelector("#carousel");
 
 prevButton?.addEventListener("click", () => {
@@ -71,6 +71,7 @@ prevButton?.addEventListener("click", () => {
   updateChart(window.index);
 });
 nextButton?.addEventListener("click", () => {
+  console.log(window.index);
   if (window.index === thumbnailData.length - 1) return;
   window.index += 1;
   updateChart(window.index);

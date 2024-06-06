@@ -138,10 +138,11 @@ html {
 
   #description {
     padding: 3%;
+    max-height: 184px;
   }
 
   .foo {
-    width: 100%;
+    width: 90%;
     height: 200px;
     padding: 3%;
   }
