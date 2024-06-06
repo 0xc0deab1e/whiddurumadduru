@@ -45,7 +45,7 @@ svg
   .attr("y", svgHeight - 200)
   .attr("fill", "gray")
   .style("font-size", "13px")
-  .style("font-weight", "normal");
+  .style("font-weight", 1200);
 
 chartGroup
   .selectAll(".big-line")
@@ -55,10 +55,10 @@ chartGroup
   .attr("class", "big-line")
   .attr("x1", rectX - 80)
   .attr("y1", (d) => y(new Date(d.year, 0, 1)))
-  .attr("x2", rectX + rectWidth + 40)
+  .attr("x2", rectX + rectWidth + 30)
   .attr("y2", (d) => y(new Date(d.year, 0, 1)))
   .attr("stroke", "black")
-  .attr("stroke-width", 1);
+  .attr("stroke-width", 0.2);
 
 chartGroup
   .selectAll(".big-line-label")
@@ -69,7 +69,7 @@ chartGroup
   .attr("x", rectX + rectWidth + 55)
   .attr("y", (d) => y(new Date(d.year, 0, 1)) + 5)
   .attr("text-anchor", "middle")
-  .attr("font-size", "10px")
+  .attr("font-size", "15px")
   .text((d) => d.year);
 
 for (let i = 0; i < smallBars.length - 1; i++) {
@@ -110,10 +110,10 @@ const nameLabels = chartGroup
   .enter()
   .append("text")
   .attr("class", "name-label")
-  .attr("x", rectX - 65)
-  .attr("y", (d) => y(new Date(d.year, 0, 1)) + 5)
+  .attr("x", rectX - 30)
+  .attr("y", (d) => y(new Date(d.year, 0, 1)) + 15)
   .attr("text-anchor", "middle")
-  .attr("font-size", "8px")
+  .attr("font-size", "12px")
   .text((d) => d.name);
 
 const yearLabels = chartGroup
@@ -122,9 +122,9 @@ const yearLabels = chartGroup
   .enter()
   .append("text")
   .attr("class", "year-label")
-  .attr("x", rectX + rectWidth + 30)
+  .attr("x", rectX + rectWidth + 5)
   .attr("y", (d) => y(new Date(d.year, 0, 1)) + 5)
-  .attr("font-size", "8px")
+  .attr("font-size", "12px")
   .text((d) => d.year);
 
 chartGroup
@@ -133,12 +133,12 @@ chartGroup
   .enter()
   .append("line")
   .attr("class", "circle-line")
-  .attr("x1", rectX - 50)
+  .attr("x1", rectX - 80)
   .attr("y1", (d) => y(new Date(d.year, 0, 1)))
-  .attr("x2", rectX + rectWidth + 30)
+  .attr("x2", rectX + rectWidth)
   .attr("y2", (d) => y(new Date(d.year, 0, 1)))
   .attr("stroke", "black")
-  .attr("stroke-width", 0.5);
+  .attr("stroke-width", 0.2);
 
 function appendRect(yPos, height, color) {
   chartGroup
@@ -177,7 +177,7 @@ function zoomed(event) {
 
   chartGroup
     .selectAll(".big-line-label")
-    .attr("y", (d) => newY(new Date(d.year, 0, 1)) - 5);
+    .attr("y", (d) => newY(new Date(d.year, 0, 1)) + 5);
 
   chartGroup
     .selectAll(".line")
@@ -186,7 +186,7 @@ function zoomed(event) {
 
   chartGroup
     .selectAll(".name-label")
-    .attr("y", (d) => newY(new Date(d.year, 0, 1)) + 5);
+    .attr("y", (d) => newY(new Date(d.year, 0, 1)) + 15);
 
   chartGroup
     .selectAll(".year-label")
@@ -249,7 +249,7 @@ chartGroup
   .attr("class", "event")
   .attr("x1", rectX - 80)
   .attr("y1", (d) => y(d.date))
-  .attr("x2", rectX + rectWidth + 30)
+  .attr("x2", rectX + rectWidth)
   .attr("y2", (d) => y(d.date))
   .attr("stroke", "transparent")
   .attr("stroke-width", 2)
@@ -260,31 +260,33 @@ chartGroup
   .on("touchend", hideEventData);
 
 function showEventData(event, d) {
-  const tooltipX = rectX - 110;
+  this.setAttribute("stroke", "black");
   const mouseY = event.pageY;
-  d3.select("body")
+  const tooltip = d3.select("body")
     .append("div")
     .attr("class", "tooltip")
-    .style("left", `${tooltipX}px`)
-    .style("top", `${mouseY - 20}px`)
+    .style("top", `${mouseY - 10}px`)
     .style("position", "absolute")
     .style("color", "black")
     .style("padding", "5px")
     .style("font-size", "12px")
     .style("background-color", "transparent")
     .style("border", "none")
+    .style("text-align", "right")
     .html(
       `<span style="font-weight:900;">${d.date.getFullYear()}/${
         d.date.getMonth() + 1
       }/${d.date.getDate()}</span><br>${d.title}`
     );
+
+    const tooltipNode = tooltip.node();
+    const tooltipRect = tooltipNode.getBoundingClientRect();
+  
+    const tooltipX = Math.max(0, rectX - tooltipRect.width - 20);
+    tooltip.style("left", tooltipX + "px");
 }
 
 function hideEventData() {
   d3.selectAll(".tooltip").remove();
+  this.setAttribute("stroke", "transparent");
 }
-
-window.onload = function () {
-  const ul = document.querySelector("ul.next");
-  ul.innerHTML += `<li><a href="/overview">Overview</a></li>`;
-};

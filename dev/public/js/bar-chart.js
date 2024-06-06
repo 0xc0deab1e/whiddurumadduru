@@ -1,24 +1,13 @@
+const bgColor = window.index == -1 ? "#d6d6d6" : "#fff";
+
 function drawChart(name, isPositive) {
   Highcharts.chart("bar_chart", {
     exporting: {
       enabled: false, // 햄버거 바 비활성화
-      buttons: {
-        contextButton: {
-          menuItems: [
-            "viewFullscreen",
-            "printChart",
-            "separator",
-            "downloadPNG",
-            "downloadJPEG",
-            "downloadPDF",
-            "downloadSVG",
-          ],
-        },
-      },
     },
     chart: {
       type: "line",
-      backgroundColor: "#d6d6d6",
+      backgroundColor: bgColor,
     },
     title: {
       text: "",
@@ -153,7 +142,7 @@ function drawSummaryChart(red, blue, white) {
   ];
   const totalPercentage = data.reduce((acc, d) => acc + d.count, 0);
 
-  const svgWidth = 100;
+  const svgWidth = 200;
   const svgHeight = 100;
   const barPadding = 5;
 

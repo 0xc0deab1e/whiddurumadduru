@@ -39,9 +39,7 @@ html {
 #bar_chart {
   width: 650px;
   height: 260px;
-  position: fixed;
-  top: -50px;
-  left: 340px;
+  margin: 0 auto;
   z-index: 10;
 }
 
@@ -64,7 +62,7 @@ html {
 
 #container {
   width: 75%;
-  height: 100vh;
+  height: 100%;
   margin: 0 1% 0 2%;
   display: inline-block;
   vertical-align: top;
