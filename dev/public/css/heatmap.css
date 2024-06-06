@@ -202,11 +202,6 @@ html {
     cursor: pointer;
   }
 
-  #Parliament_container {
-    height: 300px;
-    width: 300px;
-  }
-
   #subject,
   #poll {
     display: none;
