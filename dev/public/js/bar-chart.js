@@ -24,10 +24,19 @@ function drawChart(name, isPositive) {
     },
     xAxis: {
       labels: {
+        style: {
+          fontSize: isMobile() ? '10px' : '13px' // 원하는 크기로 설정하세요.
+      },
         enabled: true, // X축 레이블 활성화
+        
       },
     },
     yAxis: {
+      labels: {
+        style: {
+          fontSize: isMobile() ? '10px' : '13px' // 원하는 크기로 설정하세요.
+      },
+      },
       title: {
         text: "",
       },

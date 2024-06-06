@@ -84,7 +84,7 @@ html {
 }
 
 #div3.show {
-  bottom: 22%;
+  bottom: 21%;
   transition: bottom 0.5s ease-in-out;
 }
 
@@ -149,8 +149,8 @@ html {
 
   .foo {
     width: 90%;
-    height: 150px;
-    padding: 3%;
+    height: 113px;
+    padding: 6% 3% 0 3%;
   }
 
   #thumbnailContainer {
@@ -203,7 +203,7 @@ html {
     background: #f1f1f1;
     border-top: 1px solid #ccc;
     transition: transform 0.3s ease-in-out;
-    transform: translateY(85%);
+    transform: translateY(82%);
     cursor: pointer;
   }
 
