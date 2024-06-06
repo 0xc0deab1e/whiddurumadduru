@@ -243,7 +243,7 @@ function showEventData(event, d) {
     .append("div")
     .attr("class", "tooltip")
     .style("font-size", "18px")//Home 툴팁 글자크기
-    .style("top", 340 + "px")//툴팁 위치(높이)
+    .style("top", 240 + "px")//툴팁 위치(높이)
     .style("position", "absolute")
     .style("color", "black")
     .style("padding", "5px")
