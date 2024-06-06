@@ -25,22 +25,6 @@ const chart = Highcharts.chart("Parliament_container", {
       name: "Representatives",
       keys: ["name", "y", "color"],
       data: [
-        ["1", 0, "#ddd"],
-        ["2", 0, "#ddd"],
-        ["3", 0, "#ddd"],
-        ["1", 0, "#ddd"],
-        ["2", 0, "#ddd"],
-        ["3", 0, "#ddd"],
-        ["1", 0, "#ddd"],
-        ["2", 0, "#ddd"],
-        ["3", 0, "#ddd"],
-        ["1", 0, "#ddd"],
-        ["2", 0, "#ddd"],
-        ["3", 0, "#ddd"],
-        ["1", 0, "#ddd"],
-        ["2", 0, "#ddd"],
-        ["3", 0, "#ddd"],
-        ["1", 0, "#ddd"],
       ],
       dataLabels: {
         enabled: true,
@@ -149,12 +133,25 @@ function transition() {
 function loadData(Representatives) {
   var data = chart.series[0].data;
   Representatives.forEach((x, i) => {
-    data[i].update({
-      name: x[0],
-      y: x[1],
-      color: x[2],  
-    });
+    if (data.length <= i) {
+      chart.series[0].addPoint({
+        name: x[0],
+        y: x[1],
+        color: x[2],  
+      });
+    }
+    else {
+      data[i].update({
+        name: x[0],
+        y: x[1],
+        color: x[2],  
+      });
+    }
   });
+  const max = data.length;
+  for (let i = Representatives.length; i <= max; i++) {
+    data[data.length - 1].remove();
+  }
 }
 
 function updateSelectedThumbnail(idx) {

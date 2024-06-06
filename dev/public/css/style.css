@@ -83,7 +83,6 @@ footer nav ul li a {
 #details_main {
   display: flex;
   justify-content: space-around;
-  align-items: center;
   height: auto;
 }
 
@@ -94,6 +93,7 @@ footer nav ul li a {
   font-size: 1.1em;
   flex-grow: 1;
   margin: 0 5px;
+  padding: 2%;
 }
 
 #Parliament > .highcharts-figure {
@@ -190,7 +190,7 @@ input[type="number"] {
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
-  transform: translateY(-50%);
+  transform: translateY(-300%);
   z-index: 1;
 }
 
