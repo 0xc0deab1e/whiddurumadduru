@@ -71,7 +71,6 @@ prevButton?.addEventListener("click", () => {
   updateChart(window.index);
 });
 nextButton?.addEventListener("click", () => {
-  console.log(window.index);
   if (window.index === thumbnailData.length - 1) return;
   window.index += 1;
   updateChart(window.index);
