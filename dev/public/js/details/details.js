@@ -18,6 +18,7 @@ const chart = Highcharts.chart("Parliament_container", {
   },
 
   legend: {
+    enabled: !isMobile(),
     labelFormat: '{name} <span style="opacity: 0.4">{y}</span>',
   },
 
