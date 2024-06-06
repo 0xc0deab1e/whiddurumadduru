@@ -1,6 +1,33 @@
 window.isPositive = true;
 window.index = -1;
 
+function isMobile() {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // iOS detection
+  if (/iPhone|iPad|iPod/.test(userAgent) && !window.MSStream) {
+    return true;
+  }
+
+  // Android detection
+  if (/android/i.test(userAgent)) {
+    return true;
+  }
+
+  // Other mobile user agents
+  if (/Mobile|mini|Fennec|Windows Phone|webOS|Opera Mobi|IEMobile|BlackBerry/.test(userAgent)) {
+    return true;
+  }
+
+  return false;
+}
+
+if (isMobile()) {
+  setTimeout(() => {
+    document.querySelector("#container").remove();    
+  }, 200);
+}
+
 Highcharts.chart("c1ontainer", {
   exporting: {
     enabled: false, // 햄버거 바 비활성화
