@@ -1,4 +1,6 @@
-const bgColor = window.index == -1 && !isMobile() ? "#d6d6d6" : "#fff";
+let bgColor = window.index == -1 ? "#d6d6d6" : "#fff";
+if (isMobile())
+  bgColor = "#e3e3e3";
 
 function drawChart(name, isPositive) {
   Highcharts.chart("bar_chart", {

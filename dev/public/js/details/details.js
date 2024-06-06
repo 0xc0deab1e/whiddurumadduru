@@ -1,6 +1,7 @@
 const chart = Highcharts.chart("Parliament_container", {
   chart: {
     type: "item",
+    backgroundColor: '#f1f1f1',
   },
 
   exporting: {
@@ -12,7 +13,7 @@ const chart = Highcharts.chart("Parliament_container", {
   },
 
   title: {
-    text: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;의석수",
+    text: isMobile() ? "" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;의석수",
     align: "left",
   },
 
