@@ -231,7 +231,7 @@ chartGroup
   .attr("x2", (d) => x(d.date))
   .attr("y2", rectY + rectHeight)
   .attr("stroke", "transparent")
-  .attr("stroke-width", 3)
+  .attr("stroke-width", 1)
   .attr("opacity", 0.7)
   .on("mouseenter", showEventData)
   .on("mouseout", hideEventData);
@@ -273,8 +273,3 @@ function hideEventData() {
   d3.selectAll(".tooltip").remove();
   this.setAttribute("stroke", "transparent");
 }
-
-window.onload = function () {
-  const ul = document.querySelector("ul.next");
-  ul.innerHTML += `<li><a href="/overview">OVERVIEW</a></li>`;
-};

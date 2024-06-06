@@ -217,6 +217,8 @@ input[type="number"] {
   margin-bottom: 5px;
 }
 
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
 #description::-webkit-scrollbar {
   display: none;
 }
@@ -268,21 +270,21 @@ header nav ul li a {
   overflow: auto;
 }
 
-#graph-container {
-  width: 100%;
-  height: 100%;
-  padding: 50px;
-
-  box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 @media (min-width: 769px) {
   svg {
     width: 100%;
     height: 100%;
+  }
+
+  #graph-container {
+    width: 100%;
+    height: 100%;
+    padding: 50px;
+  
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 
