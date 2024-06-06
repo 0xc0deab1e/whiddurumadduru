@@ -3,6 +3,14 @@ const chart = Highcharts.chart("Parliament_container", {
     type: "item",
   },
 
+  exporting: {
+    enabled: false, // 햄버거 바 비활성화
+  },
+
+  credits: {
+    enabled: false,
+  },
+
   title: {
     text: "의석수",
   },
@@ -187,6 +195,7 @@ window.onload = function () {
     window.index = window.location.hash.replace("#", "") || 0;
   setTimeout(() => {
     updateChart(window.index);
+    document.querySelector("text.highcharts-credits").removeChild();
   }, 20);
 };
 

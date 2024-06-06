@@ -5,6 +5,9 @@ function drawChart(name, isPositive) {
     exporting: {
       enabled: false, // 햄버거 바 비활성화
     },
+    credits: {
+      enabled: false,
+    },
     chart: {
       type: "line",
       backgroundColor: bgColor,
