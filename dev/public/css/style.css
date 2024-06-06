@@ -71,15 +71,6 @@ footer nav ul li {
   display: inline;
 }
 
-footer nav ul li a {
-  color: #939292;
-  margin: 0 5px;
-  text-decoration: none;
-  position: fixed;
-  bottom: 25px;
-  margin-bottom: 25px;
-}
-
 #details_main {
   display: flex;
   justify-content: space-around;
@@ -276,6 +267,15 @@ header nav ul li a {
     height: 100%;
   }
 
+  footer nav ul li a {
+    color: #939292;
+    margin: 0 5px;
+    text-decoration: none;
+    position: fixed;
+    bottom: 25px;
+    margin-bottom: 25px;
+  }  
+
   #graph-container {
     width: 100%;
     height: 100%;
@@ -296,6 +296,14 @@ header nav ul li a {
     height: 100%;
     margin: 0 0 0 25%;
   }
+
+  footer nav ul li a {
+    color: #939292;
+    margin: 0 5px;
+    text-decoration: none;
+    position: relative;
+    bottom: 7px;
+}
   
   header {
     background-color: #333;
