@@ -211,6 +211,7 @@ input[type="number"] {
 #description {
   max-height: 660px;
   overflow: scroll;
+  text-align: left;
 }
 
 header h1,
