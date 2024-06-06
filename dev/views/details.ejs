@@ -12,13 +12,25 @@
     cursor: pointer; /* 마우스 커서 변경 */
   }
 
+  a {
+    font-weight: bold;
+    margin: 0 30px;
+    text-decoration: none;
+    color: black;
+  }
+
   .red {
     color: red;
     font-weight: bold;
   }
 </style>
 <main>
-  <div class="design-header"></div>
+  <div class="design-header">
+    <div style="display: flex;justify-content: right;top: 30px;position: relative;">
+      <a href="/">HOME</a>
+      <a href="/overview">< RETURN TO GENERAL OVERVIEW</a>
+    </div>
+  </div>
   <div id="thumbnails" class="carousel-container">
     <div class="carousel-wrapper">
       <div id="carousel"></div>
