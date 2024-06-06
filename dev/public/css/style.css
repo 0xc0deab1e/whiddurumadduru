@@ -14,6 +14,11 @@
 }
 /*# sourceMappingURL=/sm/cb46c7e49fc38cbd97a389d4dc69706f7471d0646edc67e9dc7defe084c0b8bf.map */
 
+#container img {
+  height: 20px;
+  width: 20px;
+}
+
 html,
 body {
   margin: 0;
@@ -156,7 +161,7 @@ input[type="number"] {
 
 .design-header {
   height: 100px;
-  background-color: red;
+  background-color: #d5d5d5;
 }
 .carousel-wrapper {
   height: 100px;
