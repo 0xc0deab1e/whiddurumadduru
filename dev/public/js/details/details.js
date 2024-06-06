@@ -12,7 +12,8 @@ const chart = Highcharts.chart("Parliament_container", {
   },
 
   title: {
-    text: "의석수",
+    text: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;의석수",
+    align: "left",
   },
 
   legend: {
@@ -76,8 +77,8 @@ const chart = Highcharts.chart("Parliament_container", {
   },
 });
 
-const prevButton = document.querySelector("#carousel-control-prev");
-const nextButton = document.querySelector("#carousel-control-next");
+const prevButton = document.querySelector(".carousel-control-prev");
+const nextButton = document.querySelector(".carousel-control-next");
 const carousel = document.querySelector("#carousel");
 
 prevButton?.addEventListener("click", () => {
@@ -85,7 +86,6 @@ prevButton?.addEventListener("click", () => {
   window.index -= 1;
   updateChart(window.index);
 });
-
 nextButton?.addEventListener("click", () => {
   if (window.index === thumbnailData.length - 1) return;
   window.index += 1;
@@ -195,7 +195,6 @@ window.onload = function () {
     window.index = window.location.hash.replace("#", "") || 0;
   setTimeout(() => {
     updateChart(window.index);
-    document.querySelector("text.highcharts-credits").removeChild();
   }, 20);
 };
 

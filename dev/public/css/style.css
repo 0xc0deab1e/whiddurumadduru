@@ -91,7 +91,7 @@ footer nav ul li a {
   width: 200px;
 
   margin: 10px;
-  font-size: 1.5em;
+  font-size: 1.1em;
   flex-grow: 1;
   margin: 0 5px;
 }
@@ -159,7 +159,7 @@ input[type="number"] {
 }
 
 .design-header {
-  height: 100px;
+  height: 130px;
   background-color: #d5d5d5;
 }
 .carousel-wrapper {
@@ -190,7 +190,6 @@ input[type="number"] {
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
-  top: -50%;
   transform: translateY(-50%);
   z-index: 1;
 }
@@ -211,6 +210,15 @@ input[type="number"] {
   max-height: 660px;
   overflow: scroll;
   text-align: left;
+  line-height: 1.5;
+}
+
+#percentage {
+  margin-bottom: 5px;
+}
+
+#description::-webkit-scrollbar {
+  display: none;
 }
 
 header h1,
@@ -327,6 +335,10 @@ header nav ul li a {
 #bar_chart svg {
   width: 100%;
   height: 100%;
+}
+
+.foo #bar_chart {
+  margin: 0;
 }
 
 @media (max-width: 480px) {

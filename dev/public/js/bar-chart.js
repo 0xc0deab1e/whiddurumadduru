@@ -66,10 +66,7 @@ function getSeries(name, isPositive) {
   return result;
 }
 
-function togglePositive() {
-  window.isPositive = !window.isPositive;
-  document.querySelector("#overview > div:nth-child(1) > button").innerHTML =
-    isPositive ? "긍정" : "부정";
+function togglePositive(isPositive) {
   drawChart(null, isPositive);
 }
 
