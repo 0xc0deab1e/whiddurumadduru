@@ -5,18 +5,26 @@
       background-color: rgba(51, 51, 51, 0);
       color: rgba(51, 51, 51, 0);
     }
+
+    figure {
+      margin: 0;
+    }
   </style>
   <main id="overview">
     <div style="height: 25px">
     </div>
-    <div class="foo">
-      <div id="bar_chart"></div>
-      <button class="positiveButton" onclick="togglePositive(1);" style="position: relative;right: 0px;z-index: 999;height: 25px;width: 50px;">
-        긍정
-      </button>
-      <button class="positiveButton" onclick="togglePositive(0);" style="position: relative;right: 0px;z-index: 999;height: 25px;width: 50px;">
-        부정
-      </button>
+    <div style="width: 100%; background-color: #fff;">
+      <div class="foo">
+        <div id="bar_chart"></div>
+        <button class="positiveButton" onclick="togglePositive(1);"
+          style="position: relative;right: 0px;z-index: 999;height: 25px;width: 50px;">
+          긍정
+        </button>
+        <button class="positiveButton" onclick="togglePositive(0);"
+          style="position: relative;right: 0px;z-index: 999;height: 25px;width: 50px;">
+          부정
+        </button>
+      </div>
     </div>
     <figure class="highcharts-figure" style="display: flex; flex-direction: row">
       <div id="container" style="flex: 5">
@@ -29,7 +37,11 @@
           <div id="selectedThumbnail"></div>
           <button id="carousel-control-next">▶</button>
         </div>
-        <div id="description"></div>
+        <div style="width: 100%; background-color: #fff;">
+          <div style="display: flex; justify-content: center;">
+            <div id="description" style="background-color: #fff;"></div>
+          </div>  
+        </div>
       </div>
       <div id="div2" style="height: 250px; flex: 1">
         <div id="subject">
@@ -55,89 +67,89 @@
       </div>
     </div>
   </main>
-    <script>
-      document.addEventListener('DOMContentLoaded', (event) => {
-        var imgs = document.getElementsByClassName('tooltipImage');
-        for (let index = 0; index < imgs.length; index++) {
-          let x = imgs[index];
-          const tooltipCurry = (y) => showTooltip(x.src, y);
-          const redirectCurry = (y) => redirect(x.getAttribute('img_id'), y);
-          x.addEventListener('mouseover', tooltipCurry);
-          x.addEventListener('mouseout', hideTooltip);
-          x.addEventListener('click', redirectCurry);
-        }
-      });
-
-      function redirect(num, event) {
-        window.location.href = `/details#${num}`;
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      var imgs = document.getElementsByClassName('tooltipImage');
+      for (let index = 0; index < imgs.length; index++) {
+        let x = imgs[index];
+        const tooltipCurry = (y) => showTooltip(x.src, y);
+        const redirectCurry = (y) => redirect(x.getAttribute('img_id'), y);
+        x.addEventListener('mouseover', tooltipCurry);
+        x.addEventListener('mouseout', hideTooltip);
+        x.addEventListener('click', redirectCurry);
       }
+    });
 
-      function showTooltip(src, event) {
-        var tooltip = document.createElement('div');
-        tooltip.id = 'dynamicTooltip';
-        tooltip.innerHTML = `<div style="text-align: center;">
+    function redirect(num, event) {
+      window.location.href = `/details#${num}`;
+    }
+
+    function showTooltip(src, event) {
+      var tooltip = document.createElement('div');
+      tooltip.id = 'dynamicTooltip';
+      tooltip.innerHTML = `<div style="text-align: center;">
                         <img src="${src}" style="width: 150px; height: 150px; z-index: 999; position: relative;" alt="Image"/><br>
                     </div>`;
-        
-          {
-            d3.selectAll(".positive_chart_bar").remove();
-            d3.selectAll(".negative_chart_bar").remove();
-            let test = [src.length % 10 * 10, (src.length + 5) % 10 * 7, (src.length + 3) % 7 * 7];
-            drawStackedBarChart(
-              test,
-              160,
-              10,
-              "#positive_chart"
-            );
-            drawStackedBarChart(
-              [100 - test[0], 100 - test[1], 100 - test[2]],
-              160,
-              10,
-              "#negative_chart"
-            );
-            document.querySelector(
-              "#positive_status"
-            ).innerHTML = `<span style="color: #e73921;">${test[0]}</span> <span style="color: #5e83ba;">${test[1]}</span> <span style="color: white;">${test[2]}</span>`;
-            document.querySelector(
-              "#negative_status"
-            ).innerHTML = `<span style="color: #e73921;">${100 - test[0]}</span> <span style="color: #5e83ba;">${100 - test[1]}</span> <span style="color: white;">${100 - test[2]}</span>`;
-          }
-        
-        document.body.appendChild(tooltip);
-        positionTooltip(event, tooltip);
+
+      {
+        d3.selectAll(".positive_chart_bar").remove();
+        d3.selectAll(".negative_chart_bar").remove();
+        let test = [src.length % 10 * 10, (src.length + 5) % 10 * 7, (src.length + 3) % 7 * 7];
+        drawStackedBarChart(
+          test,
+          160,
+          10,
+          "#positive_chart"
+        );
+        drawStackedBarChart(
+          [100 - test[0], 100 - test[1], 100 - test[2]],
+          160,
+          10,
+          "#negative_chart"
+        );
+        document.querySelector(
+          "#positive_status"
+        ).innerHTML = `<span style="color: #e73921;">${test[0]}</span> <span style="color: #5e83ba;">${test[1]}</span> <span style="color: white;">${test[2]}</span>`;
+        document.querySelector(
+          "#negative_status"
+        ).innerHTML = `<span style="color: #e73921;">${100 - test[0]}</span> <span style="color: #5e83ba;">${100 - test[1]}</span> <span style="color: white;">${100 - test[2]}</span>`;
       }
 
-      function hideTooltip() {
-        var tooltip = document.getElementById('dynamicTooltip');
-        if (tooltip) {
-          document.body.removeChild(tooltip);
-        }
+      document.body.appendChild(tooltip);
+      positionTooltip(event, tooltip);
+    }
+
+    function hideTooltip() {
+      var tooltip = document.getElementById('dynamicTooltip');
+      if (tooltip) {
+        document.body.removeChild(tooltip);
       }
+    }
 
-      function positionTooltip(event, tooltip) {
-        var mouseX = event.pageX;
-        var mouseY = event.pageY;
+    function positionTooltip(event, tooltip) {
+      var mouseX = event.pageX;
+      var mouseY = event.pageY;
 
-        var tooltipWidth = tooltip.offsetWidth;
-        var tooltipHeight = tooltip.offsetHeight;
+      var tooltipWidth = tooltip.offsetWidth;
+      var tooltipHeight = tooltip.offsetHeight;
 
-        var tooltipX = mouseX + 10; // Add some offset from mouse cursor
-        var tooltipY = mouseY + 10;
+      var tooltipX = mouseX + 10; // Add some offset from mouse cursor
+      var tooltipY = mouseY + 10;
 
-        tooltip.style.left = tooltipX + 'px';
-        tooltip.style.top = tooltipY + 'px';
-      }
-    </script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    <script src="https://code.highcharts.com/modules/item-series.js"></script>
-    <script src="/js/pollData.js"></script>
-    <script src="/js/thumbnailData.js"></script>
-    <script src="/js/heatmap/heatmap.js"></script>
-    <script src="/js/bar-chart.js"></script>
-    <script src="/js/details/details.js"></script>
-    <link rel="stylesheet" href="/css/heatmap.css" />
+      tooltip.style.left = tooltipX + 'px';
+      tooltip.style.top = tooltipY + 'px';
+    }
+  </script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  <script src="https://code.highcharts.com/modules/item-series.js"></script>
+  <script src="/js/pollData.js"></script>
+  <script src="/js/thumbnailData.js"></script>
+  <script src="/js/heatmap/heatmap.js"></script>
+  <script src="/js/bar-chart.js"></script>
+  <script src="/js/details/details.js"></script>
+  <link rel="stylesheet" href="/css/heatmap.css" />
