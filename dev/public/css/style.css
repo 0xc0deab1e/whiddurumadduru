@@ -52,8 +52,7 @@ footer {
   padding: 120px;
   width: 80px;
   height: auto;
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 14px;
   text-align: left;
   margin: 0 auto;
 }
@@ -303,6 +302,7 @@ header nav ul li a {
     text-decoration: none;
     position: relative;
     bottom: 7px;
+    font-family: Pretendard;
 }
   
   header {
