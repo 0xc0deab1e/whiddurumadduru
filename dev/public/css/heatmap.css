@@ -84,7 +84,7 @@ html {
 }
 
 #div3.show {
-  bottom: 35%;
+  bottom: 22%;
   transition: bottom 0.5s ease-in-out;
 }
 
@@ -208,7 +208,7 @@ html {
   }
 
   #Parliament_container {
-    height: 300px;
+    height: 194px;
     width: 320px;
   }
 
