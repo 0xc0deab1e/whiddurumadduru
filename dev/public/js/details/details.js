@@ -1,7 +1,7 @@
 const chart = Highcharts.chart("Parliament_container", {
   chart: {
     type: "item",
-    backgroundColor: '#f1f1f1',
+    backgroundColor: isMobile() ? '#f1f1f1' : '#fff',
   },
 
   exporting: {
