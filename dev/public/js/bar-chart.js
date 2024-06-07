@@ -1,3 +1,24 @@
+function isMobile() {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // iOS detection
+  if (/iPhone|iPad|iPod/.test(userAgent) && !window.MSStream) {
+    return true;
+  }
+
+  // Android detection
+  if (/android/i.test(userAgent)) {
+    return true;
+  }
+
+  // Other mobile user agents
+  if (/Mobile|mini|Fennec|Windows Phone|webOS|Opera Mobi|IEMobile|BlackBerry/.test(userAgent)) {
+    return true;
+  }
+
+  return false;
+}
+
 let bgColor = window.index == -1 ? "#d6d6d6" : "#fff";
 if (isMobile())
   bgColor = "#e3e3e3";
