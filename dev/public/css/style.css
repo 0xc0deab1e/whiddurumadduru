@@ -246,6 +246,10 @@ header nav ul li a {
 }
 
 @media (min-width: 769px) {  
+  .mobile_only {
+    display: none;
+  }
+  
   .carousel-wrapper {
     height: 368px;
     overflow: hidden;
