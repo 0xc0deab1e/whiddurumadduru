@@ -28,24 +28,16 @@ a {
 	font-weight: bold;
 }
 
-#Parliament {
-	display: flex;
-	flex-direction: column;
-	row-gap: 150px;
-}
-
-#Parliament #Parliament_container {
-	height: 600px;
-}
-
 .highcharts-title {
 	font-size: 32px !important;
 }
 
 .button_wrapper {
+	top: 280px;
 	display: flex;
 	justify-content: center;
 	gap: 121px;
+	position: relative;
 }
 
 .positiveButton,
