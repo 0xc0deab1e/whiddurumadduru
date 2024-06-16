@@ -2,7 +2,7 @@ const chart = Highcharts.chart("Parliament_container", {
   chart: {
     type: "item",
     backgroundColor: isMobile() ? '#f1f1f1' : '#fff',
-    height: 800,
+    height: isMobile() ? 320 : 800,
   },
 
   exporting: {
@@ -20,7 +20,6 @@ const chart = Highcharts.chart("Parliament_container", {
   },
 
   legend: {
-    enabled: !isMobile(),
     labelFormat: '{name} <span style="opacity: 0.4">{y}</span>',
     itemStyle: {
       fontSize: '30px'
@@ -52,7 +51,7 @@ const chart = Highcharts.chart("Parliament_container", {
     rules: [
       {
         condition: {
-          maxWidth: 600,
+          maxWidth: 400,
         },
         chartOptions: {
           series: [
@@ -60,8 +59,19 @@ const chart = Highcharts.chart("Parliament_container", {
               dataLabels: {
                 distance: -30,
               },
+              center: ["40%", "30%"],
+              size: "100%",
             },
           ],
+          legend: {
+            align: 'right', // 오른쪽 정렬
+            verticalAlign: 'top', // 상단 정렬
+            layout: 'vertical', // 세로로 배열
+            maxHeight: 140, // 최대 높이 설정 (예시)
+            itemStyle: {
+                fontSize: '6px' // 항목 글자 크기 설정
+            }
+          }
         },
       },
     ],
