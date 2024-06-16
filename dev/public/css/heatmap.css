@@ -152,12 +152,13 @@ main {
     display: block;
   }
   #div2 {
-    padding: 90px 15px;
+    padding: 0 15px;
+    margin-top: 466px;
   }
   #container {
     display: block;
     max-width: 4016px;
-    margin: 90px 1% 0 2%;
+    margin: 466px 1% 0 2%;
   }
 
   #imgBox {

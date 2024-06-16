@@ -178,23 +178,39 @@ function drawSummaryChart(red, blue, white) {
     { party: "Progressive", count: blue },
     { party: "Independent", count: white },
   ];
+  
   const totalPercentage = data.reduce((acc, d) => acc + d.count, 0);
-
-  const svgWidth = 800;
-  const svgHeight = 100;
-  const barPadding = 5;
-
+  
+  const svgWidth = 773;
+  const svgHeight = 135;
+  const barPadding = 35;
+  
   const svg = d3
     .select("#summary")
     .append("svg")
     .attr("width", svgWidth)
     .attr("height", svgHeight);
-
+  
+  // 회색 배경 막대 추가
   svg
-    .selectAll("rect")
+    .selectAll("rect.background")
     .data(data)
     .enter()
     .append("rect")
+    .attr("class", "background")
+    .attr("x", 0)
+    .attr("y", (d, i) => i * (svgHeight / data.length) + barPadding)
+    .attr("width", svgWidth)
+    .attr("height", svgHeight / data.length - 2 * barPadding)
+    .attr("fill", "#ccc");  // 회색
+  
+  // 득표율 막대 추가
+  svg
+    .selectAll("rect.foreground")
+    .data(data)
+    .enter()
+    .append("rect")
+    .attr("class", "foreground")
     .attr("x", 0)
     .attr("y", (d, i) => i * (svgHeight / data.length) + barPadding)
     .attr("width", (d) => (d.count / totalPercentage) * svgWidth)
@@ -204,7 +220,8 @@ function drawSummaryChart(red, blue, white) {
       else if (d.party === "Progressive") return "#5e83ba";
       else return "white";
     });
-
+  
+  // 텍스트 레이블 추가
   svg
     .selectAll("text")
     .data(data)
@@ -212,10 +229,7 @@ function drawSummaryChart(red, blue, white) {
     .append("text")
     .text((d) => `${d.party} (${d.count})`)
     .attr("x", 5)
-    .attr(
-      "y",
-      (d, i) => i * (svgHeight / data.length) + svgHeight / data.length / 2
-    )
+    .attr("y", (d, i) => i * (svgHeight / data.length) + svgHeight / data.length / 2)
     .attr("text-anchor", "start")
     .attr("fill", "black")
     .attr("alignment-baseline", "middle");
