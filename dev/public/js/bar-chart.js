@@ -52,9 +52,6 @@ function drawChart(name, isPositive) {
               var year = Math.floor(week / 52);
               return year + '년';
           }
-      },
-      title: {
-          text: 'Week'
       }
   },
     yAxis: {
