@@ -1073,13 +1073,13 @@ Highcharts.chart("c1ontainer", {
             d3.selectAll(".negative_chart_bar").remove();
             drawStackedBarChart(
               this.options.positive,
-              160,
+              488,
               10,
               "#positive_chart"
             );
             drawStackedBarChart(
               this.options.negative,
-              160,
+              488,
               10,
               "#negative_chart"
             );
