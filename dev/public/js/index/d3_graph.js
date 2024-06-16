@@ -1,10 +1,10 @@
-const svgWidth = 1700;
-const svgHeight = 300;
-const width = svgWidth - 30;
+const svgWidth = 4751;
+const svgHeight = 1049;
+const width = svgWidth - 83;
 const height = svgHeight;
 
 const marginLeft = 20;
-const rectHeight = height * 0.8 - 170;
+const rectHeight = height * 0.8 - 595;
 
 const svg = d3
   .select("svg")
@@ -14,7 +14,7 @@ const svg = d3
 
 const chartGroup = svg
   .append("g")
-  .attr("transform", `translate(${marginLeft}, 0)`);
+  .attr("transform", `translate(${marginLeft}, 250)`);
 
 const x = d3
   .scaleTime()
@@ -52,7 +52,7 @@ appendRect(
 );
 appendRect(
   x(new Date(2024, 0, 1)),
-  x(new Date(2027, 0, 1)) - x(new Date(2024, 0, 1)) - 30,
+  x(new Date(2027, 0, 1)) - x(new Date(2024, 0, 1)) - 83,
   LAST_COLOR
 );
 
@@ -74,8 +74,8 @@ const nameLabels = chartGroup
   .append("text")
   .attr("class", "name-label")
   .attr("x", (d) => x(new Date(d.year, 0, 1)) + 5)
-  .attr("y", (height + rectHeight) / 2 + 20)
-  .attr("font-size", "15px")
+  .attr("y", (height + rectHeight) / 2 + 40)
+  .attr("font-size", "30px")
   .attr("font-weight", "bold")
   .text((d) => d.name);
 
@@ -85,10 +85,10 @@ const yearLabels = chartGroup
   .enter()
   .append("text")
   .attr("class", "year-label")
-  .attr("x", (d) => x(new Date(d.year, 0, 1)))
-  .attr("y", height - 45)
+  .attr("x", (d) => x(new Date(d.year, 0, 1) ) + 20)
+  .attr("y", height - 180)
   .attr("text-anchor", "middle")
-  .attr("font-size", "14px")
+  .attr("font-size", "40px")
   .text((d) => d.year);
 
 chartGroup
@@ -100,9 +100,9 @@ chartGroup
   .attr("x1", (d) => x(new Date(d.year, 0, 1)))
   .attr("y1", rectY)
   .attr("x2", (d) => x(new Date(d.year, 0, 1)))
-  .attr("y2", height - 60)
+  .attr("y2", height - 230)
   .attr("stroke", "black")
-  .attr("stroke-width", 0.5);
+  .attr("stroke-width", 2);
 
 chartGroup
   .selectAll(".big-line")
@@ -113,9 +113,9 @@ chartGroup
   .attr("x1", (d) => x(new Date(d.year, 0, 1)))
   .attr("y1", 5)
   .attr("x2", (d) => x(new Date(d.year, 0, 1)))
-  .attr("y2", height - 30)
+  .attr("y2", height - 83)
   .attr("stroke", "black")
-  .attr("stroke-width", 1);
+  .attr("stroke-width", 2);
 
 chartGroup
   .selectAll(".big-line-label")
@@ -126,7 +126,7 @@ chartGroup
   .attr("x", (d) => x(new Date(d.year, 0, 1)) + 5)
   .attr("y", height - 1)
   .attr("text-anchor", "middle")
-  .attr("font-size", "18px")
+  .attr("font-size", "60px")
   .attr("font-weight", "bold")
   .text((d) => d.year);
 
@@ -168,7 +168,7 @@ function zoomed(event) {
 
   chartGroup
     .selectAll(".year-label")
-    .attr("x", (d) => newX(new Date(d.year, 0, 1)));
+    .attr("x", (d) => newX(new Date(d.year, 0, 1)) + 20);
 
   chartGroup
     .selectAll(".circle-line")
@@ -197,7 +197,7 @@ function zoomed(event) {
           newX(new Date(2024, 0, 1)) - newX(new Date(lastPresidentYear, 0, 1))
         );
       } else {
-        return newX(new Date(2027, 0, 1)) - newX(new Date(2024, 0, 1)) - 30;
+        return newX(new Date(2027, 0, 1)) - newX(new Date(2024, 0, 1)) - 83;
       }
     });
 
@@ -227,7 +227,7 @@ chartGroup
   .append("line")
   .attr("class", "event")
   .attr("x1", (d) => x(d.date))
-  .attr("y1", 5)
+  .attr("y1", rectY / 2)
   .attr("x2", (d) => x(d.date))
   .attr("y2", rectY + rectHeight)
   .attr("stroke", "transparent")
@@ -242,8 +242,8 @@ function showEventData(event, d) {
     .select("body")
     .append("div")
     .attr("class", "tooltip")
-    .style("font-size", "18px")//Home 툴팁 글자크기
-    .style("top", 240 + "px")//툴팁 위치(높이)
+    .style("font-size", "51px")//Home 툴팁 글자크기
+    .style("top", height + 100 + "px")//툴팁 위치(높이)
     .style("position", "absolute")
     .style("color", "black")
     .style("padding", "5px")

@@ -39,8 +39,6 @@ header {
   color: #fff;
   padding: 10px;
   position: absolute;
-  top: 40px;
-  left: 50px;
   height: 65px;
   z-index: 10;
   font-size: 1em;
@@ -80,7 +78,7 @@ footer nav ul li {
   width: 200px;
 
   margin: 10px;
-  font-size: 1.1em;
+  font-size: 3em;
   flex-grow: 1;
   margin: 0 5px;
   padding: 2%;
@@ -149,27 +147,35 @@ input[type="number"] {
 }
 
 .design-header {
-  height: 130px;
+  height: 500px;
   background-color: #d5d5d5;
 }
 .carousel-wrapper {
-  height: 100px;
+  height: 368px;
   overflow: hidden;
   background-color: #e3e3e3;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin: 0 260px;
+  display: flex;
 }
 
 .carousel-wrapper > #carousel {
   display: flex;
   transform: translate3d(0, 0, 0);
   transition: transform 0.2s;
+  height: 100%;
 }
 
-.carousel-wrapper > #carousel > img {
+.carousel-wrapper > #carousel > div {
+  margin: 70px 110px 70px 0;
+  font-size: 40px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-wrapper > #carousel > div > img {
   width: auto;
-  height: 100px;
-  margin-right: 12px;
+  height: 80%;
   background-color: red;
 }
 
@@ -180,20 +186,20 @@ input[type="number"] {
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
-  transform: translateY(-170%);
   z-index: 1;
+  align-self: center;
 }
 
 .carousel-control-prev {
-  left: 10px;
+  left: 165px;
 }
 
 .carousel-control-next {
-  right: 10px;
+  right: 165px;
 }
 
-#selectedThumbnail img {
-  height: calc(100vh - 400px);
+#thumbnails {
+  background-color: #e3e3e3;
 }
 
 #description {
@@ -261,6 +267,19 @@ header nav ul li a {
 }
 
 @media (min-width: 769px) {  
+  header h1 {
+    font-size: 50px;
+    margin-bottom: 30px;
+  }
+  header h2, header h3 {
+    font-size: 50px;
+  }
+  header {
+    top: 147px;
+    left: 138px;
+    height: 245px;
+    width: 720px;
+  }
   svg {
     width: 100%;
     height: 100%;
@@ -271,7 +290,7 @@ header nav ul li a {
     margin: 0 5px;
     text-decoration: none;
     position: fixed;
-    bottom: 25px;
+    bottom: 200px;
     margin-bottom: 25px;
   }  
 

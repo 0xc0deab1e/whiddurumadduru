@@ -13,13 +13,16 @@ const chart = Highcharts.chart("Parliament_container", {
   },
 
   title: {
-    text: isMobile() ? "" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;의석수",
+    text: isMobile() ? "" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;의석수 number of seats",
     align: "left",
   },
 
   legend: {
     enabled: !isMobile(),
     labelFormat: '{name} <span style="opacity: 0.4">{y}</span>',
+    itemStyle: {
+      fontSize: '30px'
+    }
   },
 
   series: [
@@ -38,8 +41,8 @@ const chart = Highcharts.chart("Parliament_container", {
 
       center: ["50%", "88%"],
       size: "170%",
-      startAngle: -100,
-      endAngle: 100,
+      startAngle: -90,
+      endAngle: 90,
     },
   ],
 
@@ -117,12 +120,13 @@ function transition() {
   const carousel = document.querySelector("#carousel");
 
   let selectedThumbnail = document.querySelector(
-    `#thumbnails > div > div > img:nth-child(${window.index + 1})`
+    `#carousel > div:nth-child(${window.index + 1}) > img`
   );
   setTimeout(() => {
     const selectedThumbnailOffset = selectedThumbnail?.offsetLeft;
     const selectedThumbnailWidth = selectedThumbnail?.offsetWidth;
-    const containerWidth = carousel?.offsetWidth;
+    const wrapper = document.querySelector(".carousel-wrapper");
+    const containerWidth = wrapper?.offsetWidth;
     
     let translateX = -(
       selectedThumbnailOffset -
@@ -204,9 +208,12 @@ function setImages() {
       return a.x + a.y * 1000 - (b.x + b.y * 1000);
     })
     .forEach((data, index) => {
+      const div = document.createElement("div");
       const item = document.createElement("img");
       item.src = `${data.value}`;
       item.setAttribute("onclick", `updateChart(${index})`);
-      thumbnailInner?.appendChild(item);
+      div.innerText = `${data.date.getFullYear()}/${data.date.getMonth() + 1}/${data.date.getDate()}`;
+      div.insertBefore(item, div.firstChild);
+      thumbnailInner?.appendChild(div);
     });
 }
