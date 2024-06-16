@@ -45,14 +45,18 @@ function drawChart(name, isPositive) {
       align: "left",
     },
     xAxis: {
+      tickInterval: 52,
       labels: {
-        style: {
-          fontSize: isMobile() ? '10px' : '13px' // 원하는 크기로 설정하세요.
+          formatter: function() {
+              var week = this.value;
+              var year = Math.floor(week / 52);
+              return year + '년';
+          }
       },
-        enabled: true, // X축 레이블 활성화
-        
-      },
-    },
+      title: {
+          text: 'Week'
+      }
+  },
     yAxis: {
       labels: {
         style: {
