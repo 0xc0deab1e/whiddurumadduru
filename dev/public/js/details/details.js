@@ -92,7 +92,7 @@ function updateChart(idx) {
   updateSelectedThumbnail(idx);
   updateDescription(idx);
   transition();
-  updatePoll();
+  updatePoll(window.isPositive === undefined ? true : window.isPositive);
   loadData(getRepresentativesByDate(thumbnailData[idx].date));
 }
 
@@ -111,11 +111,11 @@ function highlight() {
   });
 }
 
-function updatePoll() {
+function updatePoll(isPositive) {
   if (window.index < 0)
-    drawChart(null, window.isPositive);
+    drawChart(null, isPositive);
   else
-    drawChart(getVoteDataByDate(thumbnailData[window.index].date)[2], true);
+    drawChart(getVoteDataByDate(thumbnailData[window.index].date)[2], isPositive);
 }
 
 function transition() {
