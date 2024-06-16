@@ -23,9 +23,8 @@ html {
   text-align: center;
 }
 
-.tooltip-image {
-  width: 100px;
-  height: 100px;
+#poll {
+  margin-top: 300px;
 }
 
 #poll > div {
@@ -34,6 +33,10 @@ html {
 
 #poll > div > * {
   display: inline-block;
+}
+
+.poll_chart {
+  display: flex;
 }
 
 #div1 {
@@ -110,24 +113,51 @@ html {
   }
 
   #bar_chart {
-    width: 650px;
-    height: 260px;
+    width: 100%;
+    height: 336px;
     margin: 0 auto;
     z-index: 10;
   }
 
   .foo {
-    display: flex;
     margin: 0 auto;
-    width: 682px;
+    width: 2300px;
+  }
+
+  .button_wrapper {
+    text-align: center;
+  }
+
+  .positiveButton,
+  .negativeButton {
+    width: 97px;
+    height: 52px;
+    background-color: #fff;
+    color: #000;
+    border: 10px solid #000;
+  }
+
+  .tooltip-image {
+    width: 274px;
+    height: 214px;
   }
 
   #div1,
   #div2 {
     display: block;
   }
+  #div2 {
+    padding: 90px 15px;
+  }
   #container {
     display: block;
+    max-width: 4016px;
+    margin: 90px 1% 0 2%;
+  }
+
+  #imgBox {
+    width: 4013px;
+    height: 1642px;
   }
 }
 
@@ -176,7 +206,8 @@ html {
     z-index: 10;
   }
   
-  .positiveButton {
+  .positiveButton,
+  .negativeButton {
     display: none;
   }
 

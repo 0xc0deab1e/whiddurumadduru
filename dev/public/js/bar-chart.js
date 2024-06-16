@@ -65,6 +65,11 @@ function drawChart(name, isPositive) {
       },
       min: 0,
     },
+    legend: {
+      layout: "vertical",
+      align: "right",
+      verticalAlign: "middle",
+    },
     tooltip: {
       headerFormat: "<b>{series.name}</b><br>",
       pointFormat: `재임 {point.x}주차: ${
@@ -176,7 +181,7 @@ function drawSummaryChart(red, blue, white) {
   ];
   const totalPercentage = data.reduce((acc, d) => acc + d.count, 0);
 
-  const svgWidth = 200;
+  const svgWidth = 800;
   const svgHeight = 100;
   const barPadding = 5;
 
