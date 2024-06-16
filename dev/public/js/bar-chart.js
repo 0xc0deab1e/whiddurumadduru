@@ -1,5 +1,4 @@
 function isMobile() {
-  return false;
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
   // iOS detection
