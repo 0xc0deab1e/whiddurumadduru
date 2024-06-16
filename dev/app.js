@@ -12,11 +12,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(useragent.express());
 
 app.get('/', (req, res) => {
-    // if (req.useragent.isMobile) {
-    //     res.render('index_m', {isMobile: true });
-    // } else {
+    if (req.useragent.isMobile) {
+        res.render('index_m', {isMobile: true });
+    } else {
         res.render('index', { isMobile: false });
-    // }
+    }
 });
 
 app.get('/overview', (req, res) => {
@@ -24,11 +24,11 @@ app.get('/overview', (req, res) => {
 });
 
 app.get('/details', (req, res) => {
-    // if (req.useragent.isMobile) {
-    //     res.render('overview');
-    // } else {
+    if (req.useragent.isMobile) {
+        res.render('details_m');
+    } else {
         res.render('details');
-    // }
+    }
 });
 
 const PORT = process.env.PORT || 3000;
