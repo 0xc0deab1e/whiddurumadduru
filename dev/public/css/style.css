@@ -249,7 +249,7 @@ header nav ul li a {
   .mobile_only {
     display: none;
   }
-  
+
   .carousel-wrapper {
     height: 368px;
     overflow: hidden;
@@ -325,6 +325,7 @@ header nav ul li a {
 @media (max-width: 768px) {
   .carousel-wrapper {
     height: 100%;
+    overflow: hidden;
   }
 
   .carousel-wrapper > #carousel {
