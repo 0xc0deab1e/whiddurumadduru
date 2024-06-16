@@ -161,38 +161,6 @@ input[type="number"] {
   height: 500px;
   background-color: #d5d5d5;
 }
-.carousel-wrapper {
-  height: 368px;
-  overflow: hidden;
-  background-color: #e3e3e3;
-  margin: 0 260px;
-  display: flex;
-}
-
-.carousel-wrapper > #carousel {
-  display: flex;
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.2s;
-  height: 100%;
-}
-
-.carousel-wrapper > #carousel > div {
-  margin: 70px 110px 70px 0;
-  font-size: 40px;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.carousel-wrapper > #carousel > div > img {
-  width: auto;
-  height: 80%;
-  background-color: red;
-}
-
-#carousel img {
-  display: block;
-}
 
 .carousel-control-prev,
 .carousel-control-next {
@@ -278,6 +246,39 @@ header nav ul li a {
 }
 
 @media (min-width: 769px) {  
+  .carousel-wrapper {
+    height: 368px;
+    overflow: hidden;
+    background-color: #e3e3e3;
+    margin: 0 260px;
+    display: flex;
+  }
+  
+  .carousel-wrapper > #carousel {
+    display: flex;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.2s;
+    height: 100%;
+  }
+  
+  #carousel img {
+    display: block;
+  }
+  
+  .carousel-wrapper > #carousel > div {
+    margin: 70px 110px 70px 0;
+    font-size: 40px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .carousel-wrapper > #carousel > div > img {
+    width: auto;
+    height: 80%;
+    background-color: red;
+  }
+  
   header h1 {
     font-size: 50px;
     margin-bottom: 30px;
@@ -318,6 +319,31 @@ header nav ul li a {
 }
 
 @media (max-width: 768px) {
+  .carousel-wrapper {
+    height: 100%;
+  }
+
+  .carousel-wrapper > #carousel {
+    display: flex;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.2s;
+    height: 100%;
+  }
+
+  .carousel-wrapper > #carousel > div {
+    height: 100%;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .carousel-wrapper > #carousel > div > img {
+    width: auto;
+    height: 80%;
+    background-color: red;
+  }
+
   #graph-container {
     box-sizing: border-box;
     position: absolute;

@@ -184,9 +184,11 @@ function updateDescription(idx) {
 function updateVotes(idx) {
   const voteData = getVoteDataByDate(thumbnailData[idx].date);
   var rateDiv = document.getElementById("percentage");
-  rateDiv.innerHTML = `${voteData[0]}%`;
+  if (rateDiv)
+    rateDiv.innerHTML = `${voteData[0]}%`;
   var countDiv = document.getElementById("count");
-  countDiv.innerHTML = `${voteData[1]}`;
+  if (countDiv)
+    countDiv.innerHTML = `${voteData[1]}`;
 }
 
 window.onload = function () {
