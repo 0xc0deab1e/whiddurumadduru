@@ -2,6 +2,7 @@ const chart = Highcharts.chart("Parliament_container", {
   chart: {
     type: "item",
     backgroundColor: isMobile() ? '#f1f1f1' : '#fff',
+    height: 800,
   },
 
   exporting: {
@@ -15,6 +16,7 @@ const chart = Highcharts.chart("Parliament_container", {
   title: {
     text: isMobile() ? "" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;의석수 number of seats",
     align: "left",
+    fontSize: '20px',
   },
 
   legend: {
@@ -40,7 +42,7 @@ const chart = Highcharts.chart("Parliament_container", {
       },
 
       center: ["50%", "88%"],
-      size: "170%",
+      size: "140%",
       startAngle: -90,
       endAngle: 90,
     },
