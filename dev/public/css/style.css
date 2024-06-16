@@ -15,8 +15,9 @@
 /*# sourceMappingURL=/sm/cb46c7e49fc38cbd97a389d4dc69706f7471d0646edc67e9dc7defe084c0b8bf.map */
 
 #container img {
-  height: 20px;
-  width: 20px;
+  height: 80px;
+  width: 80px;
+  margin: 5px;
   box-sizing: border-box;
 }
 
