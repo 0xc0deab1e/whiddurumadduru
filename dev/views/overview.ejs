@@ -29,7 +29,7 @@
       color: #000;
       margin: 0 5px;
       text-decoration: none;" href="/">
-        <b>HOME</b>
+        <b style="font-size: 40px;">HOME</b>
       </a>
     </div>
     <div class="foofee" style="width: 100%;">
@@ -37,11 +37,11 @@
         <div id="bar_chart"></div>
         <div class="button_wrapper">
           <button class="positiveButton" onclick="togglePositive(1);"
-            style="position: relative;right: 0px;z-index: 999;height: 25px;width: 50px;">
+            style="position: relative;right: 0px;z-index: 999;height: 52px;width: 97px; margin-right: 100px;">
             긍정
           </button>
           <button class="negativeButton" onclick="togglePositive(0);"
-            style="position: relative;right: 0px;z-index: 999;height: 25px;width: 50px;">
+            style="position: relative;right: 0px;z-index: 999;height: 52px;width: 97px; margin-right: 200px;">
             부정
           </button>
         </div>
@@ -91,18 +91,18 @@ justify-content:center;
       <div id="div2" style="flex: 1">
         <div id="subject" style="font-size: 51px; font-weight: bolder;">
           subject
-          <div id="summary"></div>
+          <div id="summary" style="font-size: 30px;"></div>
         </div>
-        <div id="poll" style="width: 757px;">
-          <div class="poll_chart">
-            <div>+</div>
+        <div id="poll" style="width: 757px; font-size: 30px;">
+          <div class="poll_chart" style="margin-bottom: 55px;">
+            <div>+&nbsp;&nbsp;</div>
             <div id="positive_chart" style="width: 488px;"></div>
-            <div id="positive_status" style="margin-left: auto;"></div>
+            <div id="positive_status" style="margin-left: auto; font-size: 23px;"></div>
           </div>
           <div class="poll_chart">
-            <div>-</div>
+            <div>-&nbsp;&nbsp;&nbsp;</div>
             <div id="negative_chart" style="width: 488px;"></div>
-            <div id="negative_status" style="margin-left: auto;"></div>
+            <div id="negative_status" style="margin-left: auto; font-size: 23px;"></div>
           </div>
         </div>
       </div>
@@ -148,21 +148,21 @@ justify-content:center;
         drawStackedBarChart(
           test,
           488,
-          10,
+          25,
           "#positive_chart"
         );
         drawStackedBarChart(
           [100 - test[0], 100 - test[1], 100 - test[2]],
           488,
-          10,
+          25,
           "#negative_chart"
         );
         document.querySelector(
           "#positive_status"
-        ).innerHTML = `<span style="color: #e73921;">${test[0]}</span> <span style="color: #5e83ba;">${test[1]}</span> <span style="color: white;">${test[2]}</span>`;
+        ).innerHTML = `<span style="color: #ff0000; margin-right: 30px;">${test[0]}</span> <span style="color: #4284c2; margin-right: 30px;">${test[1]}</span> <span style="color: white;">${test[2]}</span>`;
         document.querySelector(
           "#negative_status"
-        ).innerHTML = `<span style="color: #e73921;">${100 - test[0]}</span> <span style="color: #5e83ba;">${100 - test[1]}</span> <span style="color: white;">${100 - test[2]}</span>`;
+        ).innerHTML = `<span style="color: #ff0000; margin-right: 30px;">${100 - test[0]}</span> <span style="color: #4284c2; margin-right: 30px;">${100 - test[1]}</span> <span style="color: white;">${100 - test[2]}</span>`;
       }
 
       document.body.appendChild(tooltip);

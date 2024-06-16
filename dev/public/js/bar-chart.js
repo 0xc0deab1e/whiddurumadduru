@@ -199,9 +199,9 @@ function drawSummaryChart(red, blue, white) {
     .append("rect")
     .attr("class", "background")
     .attr("x", 0)
-    .attr("y", (d, i) => i * (svgHeight / data.length) + barPadding)
+    .attr("y", (d, i) => i * 50)
+    .attr("height", barPadding)
     .attr("width", svgWidth)
-    .attr("height", svgHeight / data.length - 2 * barPadding)
     .attr("fill", "#ccc");  // 회색
   
   // 득표율 막대 추가
@@ -212,9 +212,9 @@ function drawSummaryChart(red, blue, white) {
     .append("rect")
     .attr("class", "foreground")
     .attr("x", 0)
-    .attr("y", (d, i) => i * (svgHeight / data.length) + barPadding)
+    .attr("y", (d, i) => i * 50)
+    .attr("height", barPadding)
     .attr("width", (d) => (d.count / totalPercentage) * svgWidth)
-    .attr("height", svgHeight / data.length - 2 * barPadding)
     .attr("fill", (d) => {
       if (d.party === "Conservative") return "#e73921";
       else if (d.party === "Progressive") return "#5e83ba";
