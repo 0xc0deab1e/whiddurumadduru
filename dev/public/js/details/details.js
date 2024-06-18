@@ -224,10 +224,14 @@ function setImages() {
     .forEach((data, index) => {
       const div = document.createElement("div");
       const item = document.createElement("img");
-      item.src = `${data.value}`;
+      item.src = `${renameFile(data.value)}`;
       item.setAttribute("onclick", `updateChart(${index})`);
       div.innerText = `${data.date.getFullYear()}/${data.date.getMonth() + 1}/${data.date.getDate()}`;
       div.insertBefore(item, div.firstChild);
       thumbnailInner?.appendChild(div);
     });
+}
+
+function renameFile(filename) {
+  return filename.replace(/^\/img\/(.+)\.\w+$/, '/img/comp/$1 중간.jpeg');
 }
