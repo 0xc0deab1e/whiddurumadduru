@@ -69,7 +69,7 @@ chartGroup
   .attr("x", rectX + rectWidth + 55)
   .attr("y", (d) => y(new Date(d.year, 0, 1)) + 5)
   .attr("text-anchor", "middle")
-  .attr("font-size", "15px")
+  .attr("font-size", "25px")
   .text((d) => d.year);
 
 for (let i = 0; i < smallBars.length - 1; i++) {
@@ -262,7 +262,8 @@ chartGroup
 function showEventData(event, d) {
   this.setAttribute("stroke", "black");
   const mouseY = event.pageY;
-  const tooltip = d3.select("body")
+  const tooltip = d3
+    .select("body")
     .append("div")
     .attr("class", "tooltip")
     .style("top", `${mouseY - 10}px`)
@@ -279,11 +280,11 @@ function showEventData(event, d) {
       }/${d.date.getDate()}</span><br>${d.title}`
     );
 
-    const tooltipNode = tooltip.node();
-    const tooltipRect = tooltipNode.getBoundingClientRect();
-  
-    const tooltipX = Math.max(0, rectX - tooltipRect.width - 20);
-    tooltip.style("left", tooltipX + "px");
+  const tooltipNode = tooltip.node();
+  const tooltipRect = tooltipNode.getBoundingClientRect();
+
+  const tooltipX = Math.max(0, rectX - tooltipRect.width - 20);
+  tooltip.style("left", tooltipX + "px");
 }
 
 function hideEventData() {

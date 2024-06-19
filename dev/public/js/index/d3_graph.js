@@ -75,7 +75,7 @@ const nameLabels = chartGroup
   .attr("class", "name-label")
   .attr("x", (d) => x(new Date(d.year, 0, 1)) + 5)
   .attr("y", (height + rectHeight) / 2 + 40)
-  .attr("font-size", "30px")
+  .attr("font-size", "35px")
   .attr("font-weight", "bold")
   .text((d) => d.name);
 
@@ -85,10 +85,10 @@ const yearLabels = chartGroup
   .enter()
   .append("text")
   .attr("class", "year-label")
-  .attr("x", (d) => x(new Date(d.year, 0, 1) ) + 20)
+  .attr("x", (d) => x(new Date(d.year, 0, 1)) + 20)
   .attr("y", height - 180)
   .attr("text-anchor", "middle")
-  .attr("font-size", "40px")
+  .attr("font-size", "50px")
   .text((d) => d.year);
 
 chartGroup
@@ -242,8 +242,8 @@ function showEventData(event, d) {
     .select("body")
     .append("div")
     .attr("class", "tooltip")
-    .style("font-size", "51px")//Home 툴팁 글자크기
-    .style("top", height + 100 + "px")//툴팁 위치(높이)
+    .style("font-size", "51px") //Home 툴팁 글자크기
+    .style("top", height + 100 + "px") //툴팁 위치(높이)
     .style("position", "absolute")
     .style("color", "black")
     .style("padding", "5px")
