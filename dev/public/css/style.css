@@ -151,11 +151,12 @@ input[type="number"] {
 
 .thumbnail-highlight {
   filter: none;
+  margin-bottom: 4px;
 }
 
 .thumbnail-dim {
   filter: grayscale(50%);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 @media (max-width: 768px) {
@@ -267,7 +268,7 @@ header nav ul li a {
   .carousel-wrapper > #carousel {
     display: flex;
     transform: translate3d(0, 0, 0);
-    transition: transform 0.2s;
+    transition: transform 0.1s;
     height: 100%;
   }
 
@@ -338,7 +339,7 @@ header nav ul li a {
   .carousel-wrapper > #carousel {
     display: flex;
     transform: translate3d(0, 0, 0);
-    transition: transform 0.2s;
+    transition: transform 0.1s;
     height: 100%;
   }
 
@@ -431,14 +432,14 @@ header nav ul li a {
   header {
     background-color: #333;
     color: #fff;
-    padding: 5px;
+    padding: 1px;
     position: absolute;
-    top: 36px;
-    left: 19px;
+    top: 22px;
+    left: 17px;
     width: auto;
     height: auto;
     z-index: 10;
-    font-size: 0.1em;
+    font-size: 16px;
     text-align: left;
   }
 
