@@ -169,13 +169,10 @@ main {
   }
 
   #imgBox {
-    width: 4013px;
-    height: 1642px;
   }
 }
 
 @media (max-width: 767px) {
-
   #toastContent {
     display: flex;
     justify-content: center;
@@ -215,7 +212,7 @@ main {
   #bar_chart {
     display: none;
   }
-  
+
   .positiveButton,
   .negativeButton {
     display: none;
