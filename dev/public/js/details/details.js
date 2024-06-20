@@ -1,7 +1,7 @@
 const chart = Highcharts.chart("Parliament_container", {
   chart: {
     type: "item",
-    backgroundColor: isMobile() ? '#f1f1f1' : '#fff',
+    backgroundColor: isMobile() ? "#f1f1f1" : "#fff",
     height: isMobile() ? 320 : 800,
   },
 
@@ -14,24 +14,25 @@ const chart = Highcharts.chart("Parliament_container", {
   },
 
   title: {
-    text: isMobile() ? "" : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;의석수 number of seats",
+    text: isMobile()
+      ? ""
+      : "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;의석수 number of seats",
     align: "left",
-    fontSize: '20px',
+    fontSize: "20px",
   },
 
   legend: {
     labelFormat: '{name} <span style="opacity: 0.4">{y}</span>',
     itemStyle: {
-      fontSize: '30px'
-    }
+      fontSize: "30px",
+    },
   },
 
   series: [
     {
       name: "Representatives",
       keys: ["name", "y", "color"],
-      data: [
-      ],
+      data: [],
       dataLabels: {
         enabled: true,
         format: "{point.label}",
@@ -64,14 +65,14 @@ const chart = Highcharts.chart("Parliament_container", {
             },
           ],
           legend: {
-            align: 'right', // 오른쪽 정렬
-            verticalAlign: 'top', // 상단 정렬
-            layout: 'vertical', // 세로로 배열
+            align: "right", // 오른쪽 정렬
+            verticalAlign: "top", // 상단 정렬
+            layout: "vertical", // 세로로 배열
             maxHeight: 140, // 최대 높이 설정 (예시)
             itemStyle: {
-                fontSize: '6px' // 항목 글자 크기 설정
-            }
-          }
+              fontSize: "6px", // 항목 글자 크기 설정
+            },
+          },
         },
       },
     ],
@@ -96,8 +97,7 @@ nextButton?.addEventListener("click", () => {
 function updateChart(idx) {
   window.index = parseInt(idx);
   idx = Math.max(0, idx);
-  if (window.index >= 0)
-    window.location.hash = "#" + window.index;
+  if (window.index >= 0) window.location.hash = "#" + window.index;
   highlight();
   updateSelectedThumbnail(idx);
   updateDescription(idx);
@@ -122,10 +122,12 @@ function highlight() {
 }
 
 function updatePoll(isPositive) {
-  if (window.index < 0)
-    drawChart(null, isPositive);
+  if (window.index < 0) drawChart(null, isPositive);
   else
-    drawChart(getVoteDataByDate(thumbnailData[window.index].date)[2], isPositive);
+    drawChart(
+      getVoteDataByDate(thumbnailData[window.index].date)[2],
+      isPositive
+    );
 }
 
 function transition() {
@@ -139,12 +141,13 @@ function transition() {
     const selectedThumbnailWidth = selectedThumbnail?.offsetWidth;
     const wrapper = document.querySelector(".carousel-wrapper");
     const containerWidth = wrapper?.offsetWidth;
-    
+
     let translateX = -(
       selectedThumbnailOffset -
       (containerWidth - selectedThumbnailWidth) / 2
     );
-    if (carousel) carousel.style.transform = `translate3d(${translateX}px, 0, 0)`;
+    if (carousel)
+      carousel.style.transform = `translate3d(${translateX}px, 0, 0)`;
   }, 500);
 }
 
@@ -155,14 +158,13 @@ function loadData(Representatives) {
       chart.series[0].addPoint({
         name: x[0],
         y: x[1],
-        color: x[2],  
+        color: x[2],
       });
-    }
-    else {
+    } else {
       data[i].update({
         name: x[0],
         y: x[1],
-        color: x[2],  
+        color: x[2],
       });
     }
   });
@@ -176,7 +178,9 @@ function updateSelectedThumbnail(idx) {
   var selectedThumbnailDiv = document.getElementById("selectedThumbnail");
   var selectedThumbnailSrc = thumbnailData[idx].value;
   selectedThumbnailDiv.innerHTML =
-    '<img src="' + selectedThumbnailSrc + '" alt="Selected Thumbnail" style="max-width: 100%;">';
+    '<img src="' +
+    selectedThumbnailSrc +
+    '" alt="Selected Thumbnail" style="max-width: 100%;">';
   const year = document.querySelector("#yearContainer");
   const date = thumbnailData[idx].date;
   if (year)
@@ -194,11 +198,9 @@ function updateDescription(idx) {
 function updateVotes(idx) {
   const voteData = getVoteDataByDate(thumbnailData[idx].date);
   var rateDiv = document.getElementById("percentage");
-  if (rateDiv)
-    rateDiv.innerHTML = `${voteData[0]}%`;
+  if (rateDiv) rateDiv.innerHTML = `${voteData[0]}%`;
   var countDiv = document.getElementById("count");
-  if (countDiv)
-    countDiv.innerHTML = `${voteData[1]}`;
+  if (countDiv) countDiv.innerHTML = `${voteData[1]}`;
 }
 
 window.onload = function () {
@@ -226,12 +228,15 @@ function setImages() {
       const item = document.createElement("img");
       item.src = `${renameFile(data.value)}`;
       item.setAttribute("onclick", `updateChart(${index})`);
-      div.innerText = `${data.date.getFullYear()}/${data.date.getMonth() + 1}/${data.date.getDate()}`;
+      div.innerText = `${data.date.getFullYear()}/${
+        data.date.getMonth() + 1
+      }/${data.date.getDate()}`;
       div.insertBefore(item, div.firstChild);
       thumbnailInner?.appendChild(div);
     });
 }
 
 function renameFile(filename) {
-  return filename.replace(/^\/img\/(.+)\.\w+$/, '/img/comp/$1 중간.jpeg');
+  return filename.replace(/^\/img\/(.+)\.\w+$/, "/img/comp/$1 중간.jpeg");
 }
+updatePoll(1);
