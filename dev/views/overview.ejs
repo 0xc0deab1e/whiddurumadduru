@@ -1,208 +1,285 @@
 <%- include('partials/header', { title: 'Dashboard' }) %>
-  <style>
-    #dynamicTooltip {
-      position: absolute;
-      background-color: rgba(51, 51, 51, 0);
-      color: rgba(51, 51, 51, 0);
-    }
+<style>
+  #dynamicTooltip {
+    position: absolute;
+    background-color: rgba(51, 51, 51, 0);
+    color: rgba(51, 51, 51, 0);
+  }
 
-    button {
-      background-color: black;
-      /* 배경색 검은색 */
-      color: white;
-      /* 텍스트 색상 흰색 */
-      border-color: #fff;
-      cursor: pointer;
-      /* 마우스 커서 변경 */
-      font-size: 14px;
-    }
+  button {
+    background-color: black;
+    /* 배경색 검은색 */
+    color: white;
+    /* 텍스트 색상 흰색 */
+    border-color: #fff;
+    cursor: pointer;
+    /* 마우스 커서 변경 */
+    font-size: 14px;
+  }
 
-    figure {
-      margin: 0;
-    }
-  </style>
-  <main id="overview">
-    <div style="height: 100px;width: 100%;">
-      <a style="position: absolute; 
-      right: 1015px; 
-      top: 146px; 
-      color: #000;
-      margin: 0 5px;
-      text-decoration: none;" href="/">
-        <b style="font-size: 40px;">HOME</b>
-      </a>
+  figure {
+    margin: 0;
+  }
+</style>
+<main id="overview">
+  <div style="height: 100px; width: 100%">
+    <a
+      style="
+        position: absolute;
+        right: 500px;
+        top: 146px;
+        color: #000;
+        margin: 0 5px;
+        text-decoration: none;
+      "
+      href="/"
+    >
+      <b style="font-size: 40px">HOME</b>
+    </a>
+  </div>
+  <div class="foofee" style="width: 100%">
+    <div class="foo">
+      <div id="bar_chart"></div>
+      <div class="button_wrapper">
+        <button
+          class="positiveButton"
+          onclick="togglePositive(1);"
+          style="
+            position: relative;
+            right: 0px;
+            z-index: 999;
+            height: 52px;
+            width: 97px;
+            margin-right: 100px;
+          "
+        >
+          긍정
+        </button>
+        <button
+          class="negativeButton"
+          onclick="togglePositive(0);"
+          style="
+            position: relative;
+            right: 0px;
+            z-index: 999;
+            height: 52px;
+            width: 97px;
+            margin-right: 200px;
+          "
+        >
+          부정
+        </button>
+      </div>
+      <div class="carousel-wrapper mobile_only">
+        <div id="carousel" class="mobile_only"></div>
+      </div>
     </div>
-    <div class="foofee" style="width: 100%;">
-      <div class="foo">
-        <div id="bar_chart"></div>
-        <div class="button_wrapper">
-          <button class="positiveButton" onclick="togglePositive(1);"
-            style="position: relative;right: 0px;z-index: 999;height: 52px;width: 97px; margin-right: 100px;">
-            긍정
-          </button>
-          <button class="negativeButton" onclick="togglePositive(0);"
-            style="position: relative;right: 0px;z-index: 999;height: 52px;width: 97px; margin-right: 200px;">
-            부정
-          </button>
-        </div>
-        <div class="carousel-wrapper mobile_only">
-          <div id="carousel" class="mobile_only"></div>
+  </div>
+  <figure class="highcharts-figure" style="display: flex; flex-direction: row">
+    <div id="container" style="flex: 5">
+      <div id="imgBox"></div>
+    </div>
+    <div id="mobileContainer">
+      <div
+        style="
+          padding-top: 10px;
+          font-size: 20px;
+          font-family: Pretendard;
+          font-weight: lighter;
+        "
+        id="yearContainer"
+      ></div>
+      <div id="thumbnailContainer">
+        <button
+          style="
+            width: 18px;
+            height: 18px;
+            position: absolute;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: 0;
+            border: 0px solid #000;
+            border-radius: 50%;
+          "
+          id="carousel-control-prev"
+        >
+          ◀
+        </button>
+        <div id="selectedThumbnail"></div>
+        <button
+          style="
+            height: 18px;
+            width: 18px;
+            position: absolute;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            outline: 0;
+            border: 0px solid #000;
+            border-radius: 50%;
+          "
+          id="carousel-control-next"
+        >
+          ▶
+        </button>
+      </div>
+      <div style="width: 100%; background-color: #fff">
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            height: 140px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 20px;
+            background-color: #fff;
+          "
+        >
+          <div id="description" style="background-color: #fff"></div>
         </div>
       </div>
     </div>
-    <figure class="highcharts-figure" style="display: flex; flex-direction: row">
-      <div id="container" style="flex: 5">
-        <div id="imgBox"></div>
+    <div id="div2" style="flex: 1">
+      <div id="subject" style="font-size: 51px; font-weight: bolder">
+        subject
+        <div id="summary" style="font-size: 30px; margin-top: 37px"></div>
       </div>
-      <div id="mobileContainer">
-        <div style="padding-top: 10px;font-size: 20px;font-family: Pretendard; font-weight: lighter;"
-          id="yearContainer"></div>
-        <div id="thumbnailContainer">
-          <button style="
-          width: 18px;
-          height: 18px;
-          position: absolute;
-          left: 10px;
-          display:flex;
-align-items:center;
-justify-content:center;
-          outline:0;
-          border:0px solid #000;
-          border-radius:50%;
-          ;" id="carousel-control-prev">◀</button>
-          <div id="selectedThumbnail"></div>
-          <button style="
-          height: 18px;
-          width: 18px;
-          position: absolute;
-          right: 10px;
-          display:flex;
-align-items:center;
-justify-content:center;
-          outline:0;
-          border:0px solid #000;
-          border-radius:50%;
-          " id="carousel-control-next">▶</button>
-        </div>
-        <div style="width: 100%; background-color: #fff;">
+      <div id="poll" style="width: 757px; font-size: 30px">
+        <div class="poll_chart" style="margin-bottom: 55px">
+          <div>+&nbsp;&nbsp;</div>
+          <div id="positive_chart" style="width: 488px"></div>
           <div
-            style="display: flex;justify-content: center;height: 140px;position: absolute;left: 0;right: 0;bottom: 20px;background-color: #fff;">
-            <div id="description" style="background-color: #fff;"></div>
-          </div>
+            id="positive_status"
+            style="margin-left: auto; font-size: 23px"
+          ></div>
         </div>
-      </div>
-      <div id="div2" style="flex: 1">
-        <div id="subject" style="font-size: 51px; font-weight: bolder;">
-          subject
-          <div id="summary" style="font-size: 30px; margin-top: 37px;"></div>
+        <div class="poll_chart">
+          <div>-&nbsp;&nbsp;&nbsp;</div>
+          <div id="negative_chart" style="width: 488px"></div>
+          <div
+            id="negative_status"
+            style="margin-left: auto; font-size: 23px"
+          ></div>
         </div>
-        <div id="poll" style="width: 757px; font-size: 30px;">
-          <div class="poll_chart" style="margin-bottom: 55px;">
-            <div>+&nbsp;&nbsp;</div>
-            <div id="positive_chart" style="width: 488px;"></div>
-            <div id="positive_status" style="margin-left: auto; font-size: 23px;"></div>
-          </div>
-          <div class="poll_chart">
-            <div>-&nbsp;&nbsp;&nbsp;</div>
-            <div id="negative_chart" style="width: 488px;"></div>
-            <div id="negative_status" style="margin-left: auto; font-size: 23px;"></div>
-          </div>
-        </div>
-      </div>
-    </figure>
-    <div id="div3" class="toast">
-      <div style="height: 25px;justify-content: center;display: flex;background-color: rgba(51, 51, 51, 0);"
-        onclick="toggleDiv3()">
-        <img style="top: 14px;height: 20px;transform:rotate(180deg);position: relative;z-index: 10;" src="/img/CTD.png">
-      </div>
-      <div id="toastContent">
-        <div id="Parliament_container"></div>
       </div>
     </div>
-  </main>
-  <script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      var imgs = document.getElementsByClassName('tooltipImage');
-      for (let index = 0; index < imgs.length; index++) {
-        let x = imgs[index];
-        const tooltipCurry = (y) => showTooltip(x.src, y);
-        const redirectCurry = (y) => redirect(x.getAttribute('img_id'), y);
-        x.addEventListener('mouseover', tooltipCurry);
-        x.addEventListener('mouseout', hideTooltip);
-        x.addEventListener('click', redirectCurry);
-      }
-    });
-
-    function redirect(num, event) {
-      window.location.href = `/details#${num}`;
+  </figure>
+  <div id="div3" class="toast">
+    <div
+      style="
+        height: 25px;
+        justify-content: center;
+        display: flex;
+        background-color: rgba(51, 51, 51, 0);
+      "
+      onclick="toggleDiv3()"
+    >
+      <img
+        style="
+          top: 14px;
+          height: 20px;
+          transform: rotate(180deg);
+          position: relative;
+          z-index: 10;
+        "
+        src="/img/CTD.png"
+      />
+    </div>
+    <div id="toastContent">
+      <div id="Parliament_container"></div>
+    </div>
+  </div>
+</main>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    var imgs = document.getElementsByClassName("tooltipImage");
+    for (let index = 0; index < imgs.length; index++) {
+      let x = imgs[index];
+      const tooltipCurry = (y) => showTooltip(x.src, y);
+      const redirectCurry = (y) => redirect(x.getAttribute("img_id"), y);
+      x.addEventListener("mouseover", tooltipCurry);
+      x.addEventListener("mouseout", hideTooltip);
+      x.addEventListener("click", redirectCurry);
     }
+  });
 
-    function showTooltip(src, event) {
-      var tooltip = document.createElement('div');
-      tooltip.id = 'dynamicTooltip';
-      tooltip.innerHTML = `<div style="text-align: center;">
+  function redirect(num, event) {
+    window.location.href = `/details#${num}`;
+  }
+
+  function showTooltip(src, event) {
+    var tooltip = document.createElement("div");
+    tooltip.id = "dynamicTooltip";
+    tooltip.innerHTML = `<div style="text-align: center;">
                         <img src="${src}" style="width: 274px; height: auto; z-index: 999; position: relative;" alt="Image"/><br>
                     </div>`;
 
-      {
-        d3.selectAll(".positive_chart_bar").remove();
-        d3.selectAll(".negative_chart_bar").remove();
-        let test = [src.length % 10 * 10, (src.length + 5) % 10 * 7, (src.length + 3) % 7 * 7];
-        drawStackedBarChart(
-          test,
-          488,
-          25,
-          "#positive_chart"
-        );
-        drawStackedBarChart(
-          [100 - test[0], 100 - test[1], 100 - test[2]],
-          488,
-          25,
-          "#negative_chart"
-        );
-        document.querySelector(
-          "#positive_status"
-        ).innerHTML = `<span style="color: #ff0000; margin-right: 30px;">${test[0]}</span> <span style="color: #4284c2; margin-right: 30px;">${test[1]}</span> <span style="color: white;">${test[2]}</span>`;
-        document.querySelector(
-          "#negative_status"
-        ).innerHTML = `<span style="color: #ff0000; margin-right: 30px;">${100 - test[0]}</span> <span style="color: #4284c2; margin-right: 30px;">${100 - test[1]}</span> <span style="color: white;">${100 - test[2]}</span>`;
-      }
-
-      document.body.appendChild(tooltip);
-      positionTooltip(event, tooltip);
+    {
+      d3.selectAll(".positive_chart_bar").remove();
+      d3.selectAll(".negative_chart_bar").remove();
+      let test = [
+        (src.length % 10) * 10,
+        ((src.length + 5) % 10) * 7,
+        ((src.length + 3) % 7) * 7,
+      ];
+      drawStackedBarChart(test, 488, 25, "#positive_chart");
+      drawStackedBarChart(
+        [100 - test[0], 100 - test[1], 100 - test[2]],
+        488,
+        25,
+        "#negative_chart"
+      );
+      document.querySelector(
+        "#positive_status"
+      ).innerHTML = `<span style="color: #ff0000; margin-right: 30px;">${test[0]}</span> <span style="color: #4284c2; margin-right: 30px;">${test[1]}</span> <span style="color: white;">${test[2]}</span>`;
+      document.querySelector(
+        "#negative_status"
+      ).innerHTML = `<span style="color: #ff0000; margin-right: 30px;">${
+        100 - test[0]
+      }</span> <span style="color: #4284c2; margin-right: 30px;">${
+        100 - test[1]
+      }</span> <span style="color: white;">${100 - test[2]}</span>`;
     }
 
-    function hideTooltip() {
-      var tooltip = document.getElementById('dynamicTooltip');
-      if (tooltip) {
-        document.body.removeChild(tooltip);
-      }
+    document.body.appendChild(tooltip);
+    positionTooltip(event, tooltip);
+  }
+
+  function hideTooltip() {
+    var tooltip = document.getElementById("dynamicTooltip");
+    if (tooltip) {
+      document.body.removeChild(tooltip);
     }
+  }
 
-    function positionTooltip(event, tooltip) {
-      var mouseX = event.pageX;
-      var mouseY = event.pageY;
+  function positionTooltip(event, tooltip) {
+    var mouseX = event.pageX;
+    var mouseY = event.pageY;
 
-      var tooltipWidth = tooltip.offsetWidth;
-      var tooltipHeight = tooltip.offsetHeight;
+    var tooltipWidth = tooltip.offsetWidth;
+    var tooltipHeight = tooltip.offsetHeight;
 
-      var tooltipX = mouseX + 10; // Add some offset from mouse cursor
-      var tooltipY = mouseY + 10;
+    var tooltipX = mouseX + 10; // Add some offset from mouse cursor
+    var tooltipY = mouseY + 10;
 
-      tooltip.style.left = tooltipX + 'px';
-      tooltip.style.top = tooltipY + 'px';
-    }
-  </script>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/heatmap.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-  <script src="https://code.highcharts.com/modules/export-data.js"></script>
-  <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-  <script src="https://code.highcharts.com/modules/item-series.js"></script>
-  <script src="/js/pollData.js"></script>
-  <script src="/js/thumbnailData.js"></script>
-  <script src="/js/heatmap/heatmap.js"></script>
-  <script src="/js/bar-chart.js"></script>
-  <script src="/js/details/details.js"></script>
-  <link rel="stylesheet" href="/css/heatmap.css" />
+    tooltip.style.left = tooltipX + "px";
+    tooltip.style.top = tooltipY + "px";
+  }
+</script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/modules/item-series.js"></script>
+<script src="/js/pollData.js"></script>
+<script src="/js/thumbnailData.js"></script>
+<script src="/js/heatmap/heatmap.js"></script>
+<script src="/js/bar-chart.js"></script>
+<script src="/js/details/details.js"></script>
+<link rel="stylesheet" href="/css/heatmap.css" />
