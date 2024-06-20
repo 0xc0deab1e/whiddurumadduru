@@ -3,7 +3,7 @@ const svgHeight = 1049;
 const width = svgWidth - 83;
 const height = svgHeight;
 
-const marginLeft = 20;
+const marginLeft = 100;
 const rectHeight = height * 0.8 - 595;
 
 const svg = d3
