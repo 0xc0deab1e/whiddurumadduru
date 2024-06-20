@@ -158,6 +158,11 @@ input[type="number"] {
   margin-bottom: 8px;
 }
 
+@media (max-width: 768px) {
+  .big-line-label {
+    font-size: 14px !important;
+  }
+}
 .design-header {
   height: 380px;
   background-color: #d5d5d5;
